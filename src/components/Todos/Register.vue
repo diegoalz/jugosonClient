@@ -1,10 +1,10 @@
 <template>
     <h1>Pagina donde se colocara el register solo para cuentas de clientes</h1>
     <!-- Container -->
-		<div class="container mx-auto">
-			<div class="flex justify-center px-6 my-12">
+		<div>
+			<div class="flex justify-center px-6 my-12 container mx-auto">
 				<!-- Row -->
-				<div class="w-full xl:w-3/4 lg:w-11/12 flex">
+				<div class="w-full xl:w-3/4 lg:w-11/12 flex rounded-lg border-4 border-indigo-500/100">
 					<!-- Col -->
 					<div
 						class="w-full h-auto bg-gray-400 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg"
@@ -20,7 +20,7 @@
 										First Name
 									</label>
 									<input
-										class="w-full px-3 py-2 text-sm leading-tight text-white-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+										class="w-full px-3 py-2 text-sm leading-tight text-black border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
 										id="firstName"
 										type="text"
 										placeholder="First Name"
@@ -31,7 +31,7 @@
 										Last Name
 									</label>
 									<input
-										class="w-full px-3 py-2 text-sm leading-tight text-white-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+										class="w-full px-3 py-2 text-sm leading-tight text-black border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
 										id="lastName"
 										type="text"
 										placeholder="Last Name"
@@ -43,7 +43,7 @@
 									Email
 								</label>
 								<input
-									class="w-full px-3 py-2 mb-3 text-sm leading-tight text-white-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+									class="w-full px-3 py-2 mb-3 text-sm leading-tight text-black border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
 									id="email"
 									type="email"
 									placeholder="Email"
@@ -55,7 +55,7 @@
 										Password
 									</label>
 									<input
-										class="w-full px-3 py-2 mb-3 text-sm leading-tight text-white-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+										class="w-full px-3 py-2 mb-3 text-sm leading-tight text-black border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
 										id="password"
 										type="password"
 										placeholder="******************"
@@ -67,7 +67,7 @@
 										Confirm Password
 									</label>
 									<input
-										class="w-full px-3 py-2 mb-3 text-sm leading-tight text-white-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+										class="w-full px-3 py-2 mb-3 text-sm leading-tight text-black border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
 										id="c_password"
 										type="password"
 										placeholder="******************"
@@ -88,7 +88,7 @@
 									class="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800"
 									href="#"
 								>
-									Forgot Password?
+									Olvidaste tu contraseña?
 								</a>
 							</div>
 							<div class="text-center">
@@ -96,7 +96,7 @@
 									class="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800"
 									href="./index.html"
 								>
-									Already have an account? Login!
+									Ya tienes cuenta? Dirigete al login!
 								</a>
 							</div>
 						</form>
