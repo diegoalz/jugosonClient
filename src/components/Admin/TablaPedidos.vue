@@ -41,7 +41,7 @@
                                     <div class="text-left font-medium text-gray-800">Activo</div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
-                                    <div class="text-left font-medium text-gray-800">En camino.</div>
+                                    <div class="text-left font-medium text-gray-800">En camino</div>
                                 </td>
                             </tr>
                         </tbody>
