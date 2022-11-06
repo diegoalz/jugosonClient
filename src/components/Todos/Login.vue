@@ -1,6 +1,4 @@
 <template>
-    <h1 class="text-black">Pagina principal donde se va a colocar el login para todos los usuarios</h1>
-
     <div class="h-screen w-full flex justify-center items-center bg-gradient-to-tr from-green-900 to-green-500">
         <div class="bg-image w-full sm:w-1/2 md:w-9/12 lg:w-1/2 mx-3 md:mx-5 lg:mx-0 shadow-md flex flex-col md:flex-row items-center rounded z-10 overflow-hidden bg-center bg-cover bg-blue-600">
         <div class="w-full md:w-1/2 flex flex-col justify-center items-center bg-opacity-25 bg-blue-600 backdrop">
@@ -34,7 +32,7 @@
             </button>
             </form>
             <p class="text-gray-700 text-sm mt-2">
-            don't have an account?
+            Ya tienes cuenta?
             <!-- <a href="#" class="text-green-500 hover:text-green-600 mt-3 focus:outline-none font-bold underline">
                 register
             </a> -->

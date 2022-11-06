@@ -1,15 +1,13 @@
 <template>
-    <h1>Pagina donde se colocara el register solo para cuentas de clientes</h1>
     <!-- Container -->
-		<div>
-			<div class="flex justify-center px-6 my-12 container mx-auto">
+		<div class="bg-gray-200">
+			<div class="flex justify-center px-6 container mx-auto">
 				<!-- Row -->
 				<div class="w-full xl:w-3/4 lg:w-11/12 flex rounded-lg border-4 border-indigo-500/100">
 					<!-- Col -->
 					<div
 						class="w-full h-auto bg-gray-400 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg"
-						style="background-image: url('https://www.gastrolabweb.com/u/fotografias/m/2021/5/4/f638x638-12673_70840_5050.jpg')"
-					></div>
+						style="background-image: url('https://www.gastrolabweb.com/u/fotografias/m/2021/5/4/f638x638-12673_70840_5050.jpg')"></div>
 					<!-- Col -->
 					<div class="w-full lg:w-7/12 bg-white p-5 rounded-lg lg:rounded-l-none">
 						<h3 class="pt-4 text-2xl text-center text-gray-700">Create an Account!</h3>
