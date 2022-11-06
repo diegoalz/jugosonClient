@@ -22,6 +22,10 @@
                 id="password" type="password" placeholder="password.." v-model="password" required
                 class="text-black px-4 py-2 w-full rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
             >
+            <select id="tipoCuenta" name="tipoCuenta" v-model="tipo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                <option value="cliente">Cliente</option>
+                <option value="usuario">Usuario</option>
+            </select>
             <button onclick="return this.login" class="flex justify-center items-center bg-blue-500 hover:bg-blue-600 text-white focus:outline-none focus:ring rounded px-3 py-1">
                 <svg class="w-5 h-5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
@@ -45,17 +49,28 @@
 </template>
 
 <script>
+    import auth from "../../logic/auth";
     export default {
         name: "Login",
         data: () => ({
             email: "",
             password: "",
+            tipo: "cliente",
             error: false
         }),
         methods: {
             login() {
-                console.log(this.email);
-                console.log(this.password);
+                try {
+					auth.register(this.email, this.password).then(response => {
+                        if (this.tipo == "usuario") {
+                            this.$router.push("/admin")
+                        }else if(this.tipo == "cliente"){
+                            this.$router.push("/cliente")
+                        }
+					});
+				} catch (error) {
+					this.error = true
+				}
             }
         }
     };
