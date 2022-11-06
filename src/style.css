@@ -6,8 +6,9 @@
 
   color-scheme: light;
   /* color-scheme: light dark; original */
-  color: rgba(255, 255, 255, 0.87);
+  /* color: rgba(255, 255, 255, 0.87); */
   /* background-color: #242424; original */
+  color: black;
   background-color: white;
 
   font-synthesis: none;
