@@ -6,6 +6,7 @@
         <router-link to="/cliente/pedidos">Pedidos</router-link> &nbsp;
         <router-link to="/cliente/ticket">Ticket</router-link> &nbsp;
     </nav>
+    <router-view />
 </template>
 
 <script>

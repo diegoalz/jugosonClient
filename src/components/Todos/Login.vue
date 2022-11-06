@@ -13,16 +13,16 @@
             <h3 class="mb-4 font-bold text-3xl flex items-center text-blue-500">
             LOGIN
             </h3>
-            <form action="#" class="px-3 flex flex-col justify-center items-center w-full gap-3">
+            <form action class="px-3 flex flex-col justify-center items-center w-full gap-3" @submit.prevent="login"> <!--El submit prevent sirve para que una pagina no recergue ante la accion de un boton-->
             <input 
-                type="email" placeholder="email.."
+                id="email" type="email" placeholder="email.." v-model="email" required
                 class="text-black px-4 py-2 w-full rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
             >
             <input 
-                type="password" placeholder="password.."
+                id="password" type="password" placeholder="password.." v-model="password" required
                 class="text-black px-4 py-2 w-full rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
             >
-            <button class="flex justify-center items-center bg-blue-500 hover:bg-blue-600 text-white focus:outline-none focus:ring rounded px-3 py-1">
+            <button onclick="return this.login" class="flex justify-center items-center bg-blue-500 hover:bg-blue-600 text-white focus:outline-none focus:ring rounded px-3 py-1">
                 <svg class="w-5 h-5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
                 </svg>
@@ -30,6 +30,7 @@
                 Login
                 </p>
             </button>
+                <p v-if="this.error" class="error bg-red-500 text-red-100">Has introducido mal el email o la contraseña.</p>
             </form>
             <p class="text-gray-700 text-sm mt-2">
             Ya tienes cuenta?
@@ -46,9 +47,20 @@
 <script>
     export default {
         name: "Login",
+        data: () => ({
+            email: "",
+            password: "",
+            error: false
+        }),
+        methods: {
+            login() {
+                console.log(this.email);
+                console.log(this.password);
+            }
+        }
     };
 </script>
-<style>
+<style scoped>
     .bg-image {
         background-image: url(https://www.gob.mx/cms/uploads/article/main_image/115793/NARANJAS_Mesa_de_trabajo_1.jpg);
     }
