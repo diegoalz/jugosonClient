@@ -1,19 +1,19 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Login from './components/Todos/Login.vue';
-import Register from './components/Todos/Register.vue';
-import AdminHome from './components/Admin/AdminHome.vue';
-import AdminProductos from './components/Admin/CrudProductos.vue';
-import AdminUsuarios from './components/Admin/CrudUsuarios.vue';
-import AdminClientes from './components/Admin/TablaClientes.vue';
-import AdminPedidos from './components/Admin/TablaPedidos.vue';
-import ClienteHome from './components/Cliente/ClienteHome.vue';
-import ClienteCatalogo from './components/Cliente/Catalogo.vue';
-import ClientePedidos from './components/Cliente/CrudPedidos.vue';
-import ClienteTicket from './components/Cliente/Ticket.vue';
-import RepartidorHome from './components/Repartidor/RepartidorHome.vue';
-import RepartidorMisPedidos from './components/Repartidor/MisPedidos.vue';
-import RepartidorPorHacer from './components/Repartidor/PorHacer.vue';
-import RepartidorEntrega from './components/Repartidor/Entrega.vue';
+import Login from './views/Todos/Login.vue';
+import Register from './views/Todos/Register.vue';
+import AdminHome from './views/Admin/AdminHome.vue';
+import AdminProductos from './views/Admin/CrudProductos.vue';
+import AdminUsuarios from './views/Admin/CrudUsuarios.vue';
+import AdminClientes from './views/Admin/TablaClientes.vue';
+import AdminPedidos from './views/Admin/TablaPedidos.vue';
+import ClienteHome from './views/Cliente/ClienteHome.vue';
+import ClienteCatalogo from './views/Cliente/Catalogo.vue';
+import ClientePedidos from './views/Cliente/CrudPedidos.vue';
+import ClienteTicket from './views/Cliente/Ticket.vue';
+import RepartidorHome from './views/Repartidor/RepartidorHome.vue';
+import RepartidorMisPedidos from './views/Repartidor/MisPedidos.vue';
+import RepartidorPorHacer from './views/Repartidor/PorHacer.vue';
+import RepartidorEntrega from './views/Repartidor/Entrega.vue';
 
 const routes = [
     // Pantalla generales
