@@ -61,16 +61,30 @@
         methods: {
             login() {
                 try {
-					auth.register(this.email, this.password).then(response => {
-                        if (this.tipo == "usuario") {
-                            this.$router.push("/admin")
-                        }else if(this.tipo == "cliente"){
-                            this.$router.push("/cliente")
-                        }
-					});
-				} catch (error) {
-					this.error = true
-				}
+                    if (this.tipo === 'cliente') {
+                        auth.login_client(this.email, this.password).then(response => {        
+                            if(response.data.status === 200) { // El status original siempre regresara 200 por eso usamos data
+                                auth.setUserLogged(response);
+                                // console.log(response.data.access_token);
+                                this.$router.push(`/${response.data.rol}`);
+                            }else{
+                                this.error = true;
+                            }
+                        });
+                    } else if(this.tipo === 'usuario'){
+                        auth.login_user(this.email, this.password).then(response => {
+                            if (response.data.status === 200) { // El status original siempre regresara 200 por eso usamos data
+                                auth.setUserLogged(response);
+                                // console.log(response.data.access_token);
+                                this.$router.push(`/${response.data.rol}`);
+                            }else{
+                                this.error = true;
+                            }
+                        });
+                    }
+                } catch (error) {
+                    this.error = true
+                }
             }
         }
     };

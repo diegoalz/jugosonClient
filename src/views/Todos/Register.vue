@@ -14,7 +14,7 @@
 						<form action class="px-8 pt-6 pb-8 mb-4 bg-white rounded" @submit.prevent="register">
 							<div class="mb-4 md:flex md:justify-between">
 								<div class="mb-4 md:mr-2 md:mb-0">
-									<label class="block mb-2 text-sm font-bold text-gray-700" for="firstName">
+									<label class="block mb-2 text-sm font-bold text-gray-700" for="razon_social">
 										Nombre completo
 									</label>
 									<input
@@ -25,7 +25,7 @@
 									/>
 								</div>
 								<div class="md:ml-2">
-									<label class="block mb-2 text-sm font-bold text-gray-700" for="lastName">
+									<label class="block mb-2 text-sm font-bold text-gray-700" for="razon_social">
 										Razon social
 									</label>
 									<input
@@ -53,8 +53,8 @@
 								</label>
 								<input
 									class="w-full px-3 py-2 mb-3 text-sm leading-tight text-black border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-									id="rfc" required
-									type="text" v-model="rfc"
+									id="RFC" required
+									type="text" v-model="RFC"
 									placeholder="13 para persona fisica o 12 para persona moral"
 									minlength="12"
 									maxlength="13"
@@ -74,12 +74,12 @@
 									<!-- <p class="text-xs italic text-red-500">Please choose a password.</p> -->
 								</div>
 								<div class="md:ml-2">
-									<label class="block mb-2 text-sm font-bold text-gray-700" for="c_password">
+									<label class="block mb-2 text-sm font-bold text-gray-700" for="password_confirmation">
 										Confirm Password
 									</label>
 									<input
 										class="w-full px-3 py-2 mb-3 text-sm leading-tight text-black border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-										id="c_password" required v-model="c_password"
+										id="password_confirmation" required v-model="password_confirmation"
 										type="password"
 										placeholder="******************"
 									/>
@@ -93,8 +93,9 @@
 									<input
 										class="w-full px-3 py-2 text-sm leading-tight text-black border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
 										id="telefono" required v-model="telefono"
-										type="number"
+										type="text"
 										placeholder="Solo nuevo leon"
+										maxlength="10"
 									/>
 								</div>
 								<div class="md:ml-2">
@@ -110,6 +111,7 @@
 								</div>
 							</div>
 							<p v-if="this.error" class="error bg-red-500 text-red-100">Has introducido mal el email o la contraseña.</p>
+							<p v-if="this.error" class="error bg-red-500 text-red-100">La constraseña no coincide, vuelva a internarlo</p>
 							<div class="mb-6 text-center">
 								<button
 									onclick="return this.register"
@@ -150,21 +152,30 @@
 			nombre: "",
             email: "",
 			telefono: "",
-			rfc: "",
+			RFC: "",
 			razon_social: "",
 			direccion: "",
             password: "",
-			c_password: "",
-            error: false
+			password_confirmation: "",
+            error: false,
+			error_password: false
         }),
         methods: {
             register() {
-				try {
-					auth.register(this.email, this.password).then(response => {
-						this.$router.push("/cliente")
-					});
-				} catch (error) {
-					this.error = true
+				if (this.password === this.password_confirmation) {
+					try {
+						auth.register_client(this.nombre, this.email, this.RFC, this.password, this.password_confirmation, this.direccion, this.telefono, this.razon_social ).then(response => {
+							if(response.data.status == 200){
+								this.$router.push("/")
+							}else{
+								console.log(response);
+							}
+						});
+					} catch (error) {
+						this.error = true;
+					}
+				}else{
+					this.error_password = true;
 				}
             }
         }
