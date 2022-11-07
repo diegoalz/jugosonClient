@@ -33,20 +33,20 @@
                             </tr>
                         </thead>
                         <tbody class="text-sm divide-y divide-gray-100">
-                            <tr>
+                            <tr v-if="result" v-for="producto in result">
                                 <td class="p-2 whitespace-nowrap">
                                     <div class="flex items-center">
-                                        <div class="font-medium text-gray-800">Jugo Naranja</div>
+                                        <div class="font-medium text-gray-800">{{producto.nombre_producto}}</div>
                                     </div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
-                                    <div class="text-left">jugo naranja fresco 800 ML</div>
+                                    <div class="text-left">{{producto.descripcion}}</div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
-                                    <div class="text-left font-medium text-gray-800">$50</div>
+                                    <div class="text-left font-medium text-gray-800">{{producto.precio_actual}}</div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
-                                    <div class="text-left font-medium text-gray-800">Activo</div>
+                                    <div class="text-left font-medium text-gray-800">{{producto.estatus}}</div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
                                         <div class="flex flex-row justify-center">
@@ -72,6 +72,7 @@
                                         </div>
                                 </td>
                             </tr>
+                            <h1 v-else="result">Cargando...</h1>
                         </tbody>
                     </table>
                 </div>
@@ -81,21 +82,20 @@
 </template>
 
 <script>
-import axios from 'axios'
+import controlPedidos from '../../logic/pedidos';
     export default {
         name: "CrudProductos",
         data: () => ({
             result: null,
         }),
         mounted() {
-            this.getValues();
+            this.cargarDatos();
         },
         methods: {
-            getValues(){
-                axios.get("https://jsonplaceholder.typicode.com/users").then((result) => {
-                    return this.result = result.data;
-                    // console.log(result.data);
-                })
+            cargarDatos(){
+                controlPedidos.getAllProducts().then(response => {
+                    this.result = response.data.user_info;
+                });
             }
         }
     };

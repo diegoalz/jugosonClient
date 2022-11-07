@@ -10,7 +10,7 @@ export default {
         axios.defaults.headers.common['Authorization'] = `Bearer ${sessionStorage.access_token}`;
     },
     getUserLogged() {
-        return sessionStorage.token;
+        return sessionStorage.access_token;
     },
     getUserLoggout() {
         if (sessionStorage.rol == 'cliente') {
