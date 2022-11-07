@@ -121,7 +121,7 @@
             logout() {
                 if (this.opciones == 'logout') {
                     auth.getUserLoggout().then(reponse => {
-                        sessionStorage.clear();
+                        localStorage.clear();
                         this.$router.push("/");
                     });
                 }else{

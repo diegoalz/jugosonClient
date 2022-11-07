@@ -82,7 +82,7 @@
 </template>
 
 <script>
-import controlPedidos from '../../logic/pedidos';
+import adminControl from '../../logic/admin';
     export default {
         name: "CrudProductos",
         data: () => ({
@@ -93,8 +93,8 @@ import controlPedidos from '../../logic/pedidos';
         },
         methods: {
             cargarDatos(){
-                controlPedidos.getAllProducts().then(response => {
-                    this.result = response.data.user_info;
+                adminControl.getAllProducts().then(response => {
+                    this.result = response.data.result;
                 });
             }
         }

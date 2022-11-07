@@ -5,15 +5,15 @@ const ENDPOINT_PATH = "https://jugosonbackend-production.up.railway.app/api/";
 export default {
     // Guardar tokens de autenticacion
     setUserLogged(userLogged) {
-        sessionStorage.access_token = userLogged.data.access_token;
-        sessionStorage.rol = userLogged.rol;
-        axios.defaults.headers.common['Authorization'] = `Bearer ${sessionStorage.access_token}`;
+        localStorage.access_token = userLogged.data.access_token;
+        localStorage.rol = userLogged.data.rol;
+        axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.access_token}`;
     },
     getUserLogged() {
-        return sessionStorage.access_token;
+        return localStorage.access_token;
     },
     getUserLoggout() {
-        if (sessionStorage.rol == 'cliente') {
+        if (localStorage.rol == 'cliente') {
             return axios.get(ENDPOINT_PATH + "client_logout");
         }else{
             return axios.get(ENDPOINT_PATH + "logout");
