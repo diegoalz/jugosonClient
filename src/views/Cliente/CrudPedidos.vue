@@ -1,6 +1,10 @@
 <template>
     <h1>Pagina para que el cliente relice pedidos</h1>
 
+        <button class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 px-3 py-2 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded margin ">
+            <p class="text-sm font-medium leading-none text-white">Agregar pedidos</p>
+        </button>
+
         <!-- component -->
         <div class="flex flex-col justify-center h-full">
         <!-- Table -->

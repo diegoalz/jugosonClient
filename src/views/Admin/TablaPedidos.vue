@@ -1,6 +1,6 @@
 <template>
     <h1>Pagina para ver todos los pedidos</h1>
-
+        
         <!-- component -->
         <div class="flex flex-col justify-center h-full">
         <!-- Table -->
