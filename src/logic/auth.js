@@ -6,8 +6,8 @@ export default {
     // Guardar tokens de autenticacion
     setUserLogged(userLogged) {
         sessionStorage.access_token = userLogged.data.access_token;
+        sessionStorage.rol = userLogged.rol;
         axios.defaults.headers.common['Authorization'] = `Bearer ${sessionStorage.access_token}`;
-        sessionStorage.data.rol = userLogged.rol;
     },
     getUserLogged() {
         return sessionStorage.token;
@@ -15,8 +15,6 @@ export default {
     getUserLoggout() {
         if (sessionStorage.rol == 'cliente') {
             return axios.get(ENDPOINT_PATH + "client_logout");
-            // sessionStorage.clear();
-            // this.$router.push("/");
         }else{
             return axios.get(ENDPOINT_PATH + "logout");
         }

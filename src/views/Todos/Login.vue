@@ -65,7 +65,7 @@
                         auth.login_client(this.email, this.password).then(response => {        
                             if(response.data.status === 200) { // El status original siempre regresara 200 por eso usamos data
                                 auth.setUserLogged(response);
-                                // console.log(response.data.access_token);
+                                // console.log(response);
                                 this.$router.push(`/${response.data.rol}`);
                             }else{
                                 this.error = true;
@@ -75,7 +75,7 @@
                         auth.login_user(this.email, this.password).then(response => {
                             if (response.data.status === 200) { // El status original siempre regresara 200 por eso usamos data
                                 auth.setUserLogged(response);
-                                // console.log(response.data.access_token);
+                                // console.log(response.data.rol);
                                 this.$router.push(`/${response.data.rol}`);
                             }else{
                                 this.error = true;
