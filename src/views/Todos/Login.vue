@@ -66,7 +66,7 @@
                             if(response.data.status === 200) { // El status original siempre regresara 200 por eso usamos data
                                 auth.setUserLogged(response);
                                 // console.log(response);
-                                this.$router.push(`/${response.data.rol}`);
+                                this.$router.push(`/${response.data.rol}/catalogo`);
                             }else{
                                 this.error = true;
                             }
@@ -76,7 +76,11 @@
                             if (response.data.status === 200) { // El status original siempre regresara 200 por eso usamos data
                                 auth.setUserLogged(response);
                                 // console.log(response.data.rol);
-                                this.$router.push(`/${response.data.rol}`);
+                                if (response.data.rol == 'admin') {
+                                    this.$router.push(`/${response.data.rol}/pedidos`);
+                                }else{
+                                    this.$router.push(`/${response.data.rol}/misPedidos`);
+                                }
                             }else{
                                 this.error = true;
                             }

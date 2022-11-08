@@ -12,7 +12,7 @@
                     <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Agregar un producto</h1>
                     <form action @submit.prevent="crearProducto">
                         <label for="nombre_producto" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Nombre del producto</label>
-                        <input v-model="nombre_producto" id="nombre_producto" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Ana Lisa Melchotto" />
+                        <input v-model="nombre_producto" id="nombre_producto" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Nombre completo" />
                         <label for="descripcion" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Descripción</label>
                         <textarea v-model="descripcion" name="descripcion" id="descripcion" cols="50" rows="6" placeholder="Presentación, tamaño, etc..." class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full flex items-center pl-3 text-sm border-gray-300 rounded border"></textarea>
                         <label for="precio_actual" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Precio</label>

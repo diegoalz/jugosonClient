@@ -1,6 +1,4 @@
 <template>
-    <h1>Pagina para ver clientes</h1>
-
     <!-- component -->
     <div class="flex flex-col justify-center h-full">
         <!-- Table -->
@@ -23,26 +21,27 @@
                                     <div class="font-semibold text-left">Telefono</div>
                                 </th>
                                 <th class="p-2 whitespace-nowrap">
-                                    <div class="font-semibold text-left">Estatus</div>
+                                    <div class="font-semibold text-left">RFC</div>
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="text-sm divide-y divide-gray-100">
+                        <tbody class="text-sm divide-y divide-gray-100" v-if="result" v-for="cliente in result">
                             <tr>
                                 <td class="p-2 whitespace-nowrap">
-                                    <div class="text-left">andre gignac</div>
+                                    <div class="text-left">{{cliente.nombre}}</div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
-                                    <div class="text-left">serdeluz@gmail.com</div>
+                                    <div class="text-left">{{cliente.email}}</div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
-                                    <div class="text-left font-medium text-gray-800">8125471819</div>
+                                    <div class="text-left font-medium text-gray-800">{{cliente.telefono}}</div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
-                                    <div class="text-left font-medium text-gray-800">Activo</div>
+                                    <div class="text-left font-medium text-gray-800">{{cliente.RFC}}</div>
                                 </td>
                             </tr>
                         </tbody>
+                        <h1 v-else="result">Cargando...</h1>
                     </table>
                 </div>
             </div>
@@ -52,8 +51,25 @@
 </template>
 
 
-<script >
+<script>
+import adminControl from '../../logic/admin';
     export default {
         name: "TablaClientes",
+        data: () => ({
+            result : null
+        }),
+        mounted() {
+            this.cargarDatos();
+        },
+        methods: {
+            cargarDatos(){
+                adminControl.all_clientes().then(response => {
+                    console.log(response);
+                    this.result = response.data.result;
+                }).catch(error=>{
+                    console.log(error);
+                });
+            },
+        }
     };
 </script>

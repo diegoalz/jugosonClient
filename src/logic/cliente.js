@@ -2,6 +2,8 @@ import axios from "axios";
 
 const ENDPOINT_PATH = "https://jugosonbackend-production.up.railway.app/api/";
 
+axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.access_token}`;
+
 export default {
     estatus_cliente(nuevo_estatus, aviso, clientes) {
         const cliente = { nuevo_estatus, aviso, clientes };

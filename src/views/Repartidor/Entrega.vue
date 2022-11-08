@@ -33,7 +33,7 @@
                                     <div class="text-left">130231</div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
-                                    <div class="text-left">Tepizcoeloyo #312</div>
+                                    <div class="text-left">Guanajuato #312</div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
                                     <div class="text-left font-medium text-gray-800">Activo</div>

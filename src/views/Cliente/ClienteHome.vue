@@ -42,8 +42,7 @@
                     <!-- <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Projects</a> -->
 
                     <!-- <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Calendar</a> -->
-                    <router-link class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page" to="/cliente/">Home</router-link>
-                    <router-link class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" to="/cliente/catalogo">Catalogo</router-link>
+                    <router-link class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page" to="/cliente/catalogo">Catalogo</router-link>
                     <router-link class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" to="/cliente/pedidos">Pedidos</router-link>
                     <router-link class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" to="/cliente/ticket">Ticket</router-link>
                 </div>
@@ -51,26 +50,32 @@
                 </div>
             </div>
             <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <button type="button" class="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                <span class="sr-only">View notifications</span>
-                <!-- Heroicon name: outline/bell -->
-                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
-                </svg>
-                </button>
-
                 <!-- Profile dropdown -->
                 <div class="relative ml-3">
-                <form action class="flex justify-around" @submit.prevent="logout">
-                    <span class="sr-only">Open user menu</span>
-                    <select v-model="opciones" id="opciones" name="opciones" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg border-l-gray-100 dark:border-l-gray-700 border-l-2 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option value="opciones">Opciones</option>
-                        <option value="logout">Logout</option>
-                    </select>
-                    <button onclick="return this.logout" class="flex-initial w-12 rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-                        <img class="h-8 w-8 rounded-full" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="">
-                    </button>
-                </form>
+                <!-- Dropdown real -->
+                <button @click="menu()" id="dropdownMenu" class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-600" type="button"> 
+                    <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path></svg>
+                </button>
+
+                <!-- Dropdown menu -->
+                <div v-show="desplegar" id="dropdownMenu" class="fixed w-44 mt-2 right-2 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
+                    <form action @submit.prevent="logout">
+                        <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenu">
+                        <li>
+                            <p href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Menu</p>
+                        </li>
+                        <!-- <li>
+                            <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+                        </li> -->
+                        </ul>
+                        <div class="py-1" type="button" @click="this.logout('logout')">
+                        <p class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Salir</p>
+                        </div>
+                    </form>
+                </div>
 
                 <!--
                     Dropdown menu, show/hide based on menu state.
@@ -116,10 +121,14 @@
         name: "ClienteHome",
         data: () => ({
             opciones: "",
+            desplegar : false
         }),
         methods: {
-            logout() {
-                if (this.opciones == 'logout') {
+            menu(){
+                this.desplegar = (this.desplegar == false)?true:false;
+            },
+            logout(opcion) {
+                if (opcion == 'logout') {
                     auth.getUserLoggout().then(reponse => {
                         localStorage.clear();
                         this.$router.push("/");

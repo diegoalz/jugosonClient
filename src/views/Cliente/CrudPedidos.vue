@@ -15,26 +15,23 @@
 
                 </div>
                 <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Agregar un pedido</h1>
-                <label for="name" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Nombre</label>
-                <input id="name" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Ana Lisa Melchotto" />
-                <label for="name" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Descripción</label>
-                <input id="name" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Jugo de naranja" />
-                <label for="name" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Precio</label>
-                <input id="name" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="$50" />
-                <label for="name" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Estatus</label>
-                <input id="name" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Activo" />
-
-                <div class="flex items-center justify-center w-full">
-                    <button class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">Submit</button>
-                    <button class="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm" @click="modaledit=false" type="button">Cancel</button>
-                </div>
-                <button class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 rounded focus:ring-2 focus:outline-none focus:ring-gray-600" @click="modalCrear=false" type="button" aria-label="close modal" role="button">
-                    <svg  xmlns="http://www.w3.org/2000/svg"  class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" />
-                        <line x1="18" y1="6" x2="6" y2="18" />
-                        <line x1="6" y1="6" x2="18" y2="18" />
-                    </svg>
-                </button>
+                <form action @submit.prevent="crearPedido">
+                    <label for="nombre_producto" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Orden compra</label>
+                    <input v-model="orden_compra" id="nombre_producto" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Orden de compra" />
+                    <label for="descripcion" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Direccion</label>
+                    <textarea v-model="direccion" name="descripcion" id="descripcion" cols="50" rows="6" placeholder="Colonia residencia, guadalupe, nuevo león" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full flex items-center pl-3 text-sm border-gray-300 rounded border"></textarea>
+                    <div class="flex items-center justify-center w-full">
+                        <button class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">Guardar</button>
+                        <button class="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm" @click="modalCrear=false" type="button">Cancelar</button>
+                    </div>
+                    <button class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 rounded focus:ring-2 focus:outline-none focus:ring-gray-600" @click="modalCrear=false" type="button" aria-label="close modal" role="button">
+                        <svg  xmlns="http://www.w3.org/2000/svg"  class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" />
+                            <line x1="18" y1="6" x2="6" y2="18" />
+                            <line x1="6" y1="6" x2="18" y2="18" />
+                        </svg>
+                    </button>
+                </form>
             </div>
         </div>
     </div>
@@ -52,16 +49,16 @@
                         <thead class="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
                             <tr>
                                 <th class="p-2 whitespace-nowrap">
-                                    <div class="font-semibold text-left">nombre</div>
+                                    <div class="font-semibold text-left">Direccion</div>
                                 </th>
                                 <th class="p-2 whitespace-nowrap">
-                                    <div class="font-semibold text-left">descripción</div>
-                                </th>
-                                <th class="p-2 whitespace-nowrap">
-                                    <div class="font-semibold text-left">precio_actual</div>
+                                    <div class="font-semibold text-left">Proceso</div>
                                 </th>
                                 <th class="p-2 whitespace-nowrap">
                                     <div class="font-semibold text-left">Estatus</div>
+                                </th>
+                                <th class="p-2 whitespace-nowrap">
+                                    <div class="font-semibold text-left">Fecha</div>
                                 </th>
                                 <th class="p-2 whitespace-nowrap">
                                     <div class="font-semibold text-center">Acciones</div>
@@ -69,20 +66,20 @@
                             </tr>
                         </thead>
                         <tbody class="text-sm divide-y divide-gray-100">
-                            <tr>
+                            <tr v-if="result" v-for="pedido in result">
                                 <td class="p-2 whitespace-nowrap">
                                     <div class="flex items-center">
-                                        <div class="font-medium text-gray-800">Jugo Naranja</div>
+                                        <div class="font-medium text-gray-800">{{pedido.direccion}}</div>
                                     </div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
-                                    <div class="text-left">jugo naranja fresco 800 ML</div>
+                                    <div class="text-left">{{pedido.proceso}}</div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
-                                    <div class="text-left font-medium text-gray-800">$50</div>
+                                    <div class="text-left font-medium text-gray-800">{{pedido.estatus}}</div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
-                                    <div class="text-left font-medium text-gray-800">Activo</div>
+                                    <div class="text-left font-medium text-gray-800">{{pedido.created_at.substr(0, 10)}}</div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
                                         <div class="flex flex-row justify-center">
@@ -106,8 +103,9 @@
                                                 </button>
                                             </div>
                                         </div>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
+                                <h1 v-else="result">Cargando...</h1>
                         </tbody>
                     </table>
                 </div>
@@ -129,7 +127,7 @@
                 </div>
                 <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Modifica el pedido</h1>
                 <label for="name" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Nombre</label>
-                <input id="name" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Ana Lisa Melchotto" />
+                <input id="name" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Valor" />
                 <label for="name" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Descripción</label>
                 <input id="name" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Jugo de naranja" />
                 <label for="name" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Precio</label>
@@ -201,6 +199,7 @@
 </template>
 
 <script>
+import clienteControl from '../../logic/cliente';
     export default {
         name: "CrudPedidos",
         data() {
@@ -208,6 +207,28 @@
                 modaledit: false,
                 modalborrar: false,
                 modalCrear: false,
+                result: null,
+                orden_compra: "",
+                direccion: ""
+            }
+        },
+        mounted() {
+            this.cargarDatos();
+        },
+        methods: {
+            cargarDatos(){
+                clienteControl.cliente_pedidos().then(response => {
+                    this.result = response.data.result;
+                }).catch(error=>{
+                    console.log(error);
+                });
+            },
+            crearPedido(){
+                clienteControl.crear_pedido(this.orden_compra, 1, this.direccion).then(response=>{
+                    this.cargarDatos();
+                }).catch(error=>{
+                    console.log(error);
+                });
             }
         }
     };
