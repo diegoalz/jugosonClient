@@ -34,12 +34,12 @@ export default {
     
     // control completo del catalogo de producción
     
-    guardar_producto(nombre_producto, descripción, precio_actual) {
-        const admin = { nombre_producto, descripción, precio_actual };
+    guardar_producto(nombre_producto, descripcion, precio_actual) {
+        const admin = { nombre_producto, descripcion, precio_actual };
         return axios.post(ENDPOINT_PATH + "guardar_producto", admin);
     },
     editar_producto(id, nombre_producto, descripcion, precio_actual) {
-        const admin = { nombre_producto, descripción, precio_actual };
+        const admin = { id, nombre_producto, descripcion, precio_actual };
         return axios.post(ENDPOINT_PATH + "editar_producto", admin);
     },
     producto_baja(nuevo_estatus, aviso, producto) {
