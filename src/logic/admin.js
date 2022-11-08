@@ -42,8 +42,8 @@ export default {
         const admin = { id, nombre_producto, descripcion, precio_actual };
         return axios.post(ENDPOINT_PATH + "editar_producto", admin);
     },
-    producto_baja(nuevo_estatus, aviso, producto) {
-        const admin = { nuevo_estatus, aviso, producto };
+    producto_baja(id, estatus_actual) {
+        const admin = { id, estatus_actual };
         return axios.post(ENDPOINT_PATH + "producto_baja", admin);
     },
     all_productos() {

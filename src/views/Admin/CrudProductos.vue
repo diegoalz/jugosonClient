@@ -16,7 +16,7 @@
                         <label for="descripcion" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Descripción</label>
                         <textarea v-model="descripcion" name="descripcion" id="descripcion" cols="50" rows="6" placeholder="Presentación, tamaño, etc..." class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full flex items-center pl-3 text-sm border-gray-300 rounded border"></textarea>
                         <label for="precio_actual" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Precio</label>
-                        <input v-model="precio_actual" id="precio" type="number" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="$50" />
+                        <input v-model="precio_actual" id="precio" type="number" step="0.001" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="$50" />
                         <div class="flex items-center justify-center w-full">
                             <button class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">Guardar</button>
                             <button class="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm" @click="modalCrear=false" type="button">Cancelar</button>
@@ -92,7 +92,7 @@
                                                 </button>
                                             </div>
                                             <div>
-                                                <button @click="modalborrar=true">
+                                                <button @click="avisoBorrar(producto)">
                                                     <a href="#">
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-600 hover:text-red-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -126,7 +126,7 @@
                             <label for="descripcion" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Descripción</label>
                             <textarea v-model="descripcion" name="descripcion" id="descripcion" cols="50" rows="6" placeholder="Presentación, tamaño, etc..." class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full flex items-center pl-3 text-sm border-gray-300 rounded border"></textarea>
                             <label for="precio_actual" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Precio</label>
-                            <input v-model="precio_actual" id="precio" type="number" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="$50" />
+                            <input v-model="precio_actual" id="precio" type="number" step="0.001" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="$50" />
     
                             <div class="flex items-center justify-center w-full">
                                 <button class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">Submit</button>
@@ -163,7 +163,7 @@
                         <button class="mb-2 md:mb-0 bg-white px-5 py-2 text-sm shadow-sm font-medium tracking-wider border text-gray-600 rounded-full hover:shadow-lg hover:bg-gray-100"  @click="modalborrar=false">
                             Cancelar
                         </button>
-                        <button class="mb-2 md:mb-0 bg-red-500 border border-red-500 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-red-600">Borrar</button>
+                        <button @click="borrarProducto()" class="mb-2 md:mb-0 bg-red-500 border border-red-500 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-red-600">Borrar</button>
                     </div>
                 </div>
 
@@ -212,7 +212,6 @@ import adminControl from '../../logic/admin';
                 });
             },
             infoProducto(seleccionado){
-                console.log(seleccionado);
                 this.modaledit = true;
                 this.id = seleccionado.id;
                 this.nombre_producto = seleccionado.nombre_producto;
@@ -223,6 +222,19 @@ import adminControl from '../../logic/admin';
                 adminControl.editar_producto(this.id, this.nombre_producto, this.descripcion, this.precio_actual).then(response => {
                     this.cargarDatos();
                     this.modaledit = false;
+                }).catch(error => {
+                    console.log(error);
+                });
+            },
+            avisoBorrar(seleccionado){
+                this.modalborrar = true;
+                this.id = seleccionado.id;
+                this.estatus = seleccionado.estatus
+            },
+            borrarProducto(){
+                adminControl.producto_baja(this.id, this.estatus).then(response => {
+                    this.cargarDatos();
+                    this.modalborrar = false;
                 }).catch(error => {
                     console.log(error);
                 });
