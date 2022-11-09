@@ -224,7 +224,7 @@ import clienteControl from '../../logic/cliente';
                 });
             },
             crearPedido(){
-                clienteControl.crear_pedido(this.orden_compra, 1, this.direccion).then(response=>{
+                clienteControl.crear_pedido(this.orden_compra, this.direccion).then(response=>{
                     this.cargarDatos();
                 }).catch(error=>{
                     console.log(error);

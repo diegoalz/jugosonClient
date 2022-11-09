@@ -18,8 +18,8 @@ export default {
         return axios.get(ENDPOINT_PATH + "catalogo");
     },
     // realizar pedido 
-    crear_pedido(orden_compra, id_cliente, direccion) {
-        const cliente = { orden_compra, id_cliente, direccion };
+    crear_pedido(orden_compra, direccion) {
+        const cliente = { orden_compra, direccion };
         return axios.post(ENDPOINT_PATH + "crear_pedido", cliente);
     },
     editar_pedido( id, orden_compra, direccion ) {
