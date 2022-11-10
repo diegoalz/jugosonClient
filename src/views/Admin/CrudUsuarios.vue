@@ -1,8 +1,9 @@
 <template>
-    <h1>Pagina de control de usuarios</h1>
-    <button class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 px-3 py-2 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded margin ">
-                            <p class="text-sm font-medium leading-none text-white">Agregar usuario</p>
-                        </button>
+
+            <button class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 px-3 my-4 py-2 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded margin ">
+                <p class="text-sm font-medium leading-none text-white">Agregar usuario</p>
+            </button>
+
         <!-- component -->
         <div class="flex flex-col justify-center h-full">
         <!-- Table -->
@@ -19,10 +20,13 @@
                                     <div class="font-semibold text-left">nombre</div>
                                 </th>
                                 <th class="p-2 whitespace-nowrap">
-                                    <div class="font-semibold text-left">descripción</div>
+                                    <div class="font-semibold text-left">Email</div>
                                 </th>
                                 <th class="p-2 whitespace-nowrap">
-                                    <div class="font-semibold text-left">precio_actual</div>
+                                    <div class="font-semibold text-left">Telefono</div>
+                                </th>
+                                <th class="p-2 whitespace-nowrap">
+                                    <div class="font-semibold text-left">Rol</div>
                                 </th>
                                 <th class="p-2 whitespace-nowrap">
                                     <div class="font-semibold text-left">Estatus</div>
@@ -36,17 +40,20 @@
                             <tr>
                                 <td class="p-2 whitespace-nowrap">
                                     <div class="flex items-center">
-                                        <div class="font-medium text-gray-800">Jugo Naranja</div>
+                                        <div class="font-medium text-gray-800">Maria Hernandez</div>
                                     </div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
-                                    <div class="text-left">jugo naranja fresco 800 ML</div>
+                                    <div class="text-left">marihdz@gmai.com</div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
-                                    <div class="text-left font-medium text-gray-800">$50</div>
+                                    <div class="text-left font-medium text-gray-800">8123102391</div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
-                                    <div class="text-left font-medium text-gray-800">Activo</div>
+                                    <div class="text-left font-medium text-gray-800">Empleado</div>
+                                </td>
+                                <td class="p-2 whitespace-nowrap">
+                                    <div class="text-left font-medium text-gray-800">True</div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
                                         <div class="flex flex-row justify-center">

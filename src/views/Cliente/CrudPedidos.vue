@@ -1,7 +1,6 @@
 <template>
-    <h1>Pagina para que el cliente relice pedidos</h1>
 
-        <button class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 px-3 py-2 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded margin ">
+        <button class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 px-3 my-4 py-2 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded margin ">
             <p class="text-sm font-medium leading-none text-white" @click="modalCrear=true">Agregar pedidos</p>
         </button>
         <!-- Modal crear -->
@@ -55,9 +54,6 @@
                                     <div class="font-semibold text-left">Proceso</div>
                                 </th>
                                 <th class="p-2 whitespace-nowrap">
-                                    <div class="font-semibold text-left">Estatus</div>
-                                </th>
-                                <th class="p-2 whitespace-nowrap">
                                     <div class="font-semibold text-left">Fecha</div>
                                 </th>
                                 <th class="p-2 whitespace-nowrap">
@@ -74,9 +70,6 @@
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
                                     <div class="text-left">{{pedido.proceso}}</div>
-                                </td>
-                                <td class="p-2 whitespace-nowrap">
-                                    <div class="text-left font-medium text-gray-800">{{pedido.estatus}}</div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
                                     <div class="text-left font-medium text-gray-800">{{pedido.created_at.substr(0, 10)}}</div>
