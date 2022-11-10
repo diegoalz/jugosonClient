@@ -37,7 +37,7 @@ const routes = [
             { path: "catalogo", component: ClienteCatalogo},
             { path: "pedidos", component: ClientePedidos},
             { path: "ticket", component: ClienteTicket},
-            { path: "detallePedido/:id_pedido", component: ClienteDetallePedido, name:'detalle'},
+            { path: "detallePedido/:id_pedido/:proceso", component: ClienteDetallePedido, name:'detalle'},
         ]
     },
     // Pantallas para los repartidores

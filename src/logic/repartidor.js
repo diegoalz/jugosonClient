@@ -6,8 +6,8 @@ axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.access_t
 
 export default {
     // repartidores
-    proceso_pedido(proceso) {
-        const repartidor = { proceso };
+    proceso_pedido(id, proceso) {
+        const repartidor = { id, proceso };
         return axios.post(ENDPOINT_PATH + "proceso_pedido", repartidor);
     },
     lista_pedido_producto(id_pedido) {

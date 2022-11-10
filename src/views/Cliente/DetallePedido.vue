@@ -1,6 +1,6 @@
 <template>
     <!-- Formulario para agregar -->
-<button @click="modal.modalCrear = true" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 px-3 my-4 py-2 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded margin ">
+<button v-show="this.modal.modalBloquear"  @click="modal.modalCrear = true" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 px-3 my-4 py-2 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded margin ">
             <p class="text-sm font-medium leading-none text-white">Agregar productos a pedido</p>
         </button>
         <!-- Modal crear -->
@@ -57,18 +57,18 @@
                         <thead class="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
                             <tr>
                                 <th class="p-2 whitespace-nowrap">
-                                    <div class="font-semibold text-center">ID</div>
+                                    <div class="font-semibold text-left">Producto</div>
                                 </th>
+                                <!-- <th class="p-2 whitespace-nowrap">
+                                    <div class="font-semibold text-center">ID</div>
+                                </th> -->
                                 <th class="p-2 whitespace-nowrap">
                                     <div class="font-semibold text-left">Precio unitario</div>
                                 </th>
                                 <th class="p-2 whitespace-nowrap">
                                     <div class="font-semibold text-left">Cantidad</div>
                                 </th>
-                                <th class="p-2 whitespace-nowrap">
-                                    <div class="font-semibold text-left">Producto</div>
-                                </th>
-                                <th class="p-2 whitespace-nowrap">
+                                <th class="p-2 whitespace-nowrap" v-show="this.modal.modalBloquear">
                                     <div class="font-semibold text-center">Acciones</div>
                                 </th>
                             </tr>
@@ -76,10 +76,13 @@
                         <tbody class="text-sm divide-y divide-gray-100">
                             <tr v-if="result" v-for="pedido_producto in result">
                                 <td class="p-2 whitespace-nowrap">
+                                    <div class="text-left font-medium text-gray-800">{{this.devolverNombre(pedido_producto.id_producto)}}</div>
+                                </td>
+                                <!-- <td class="p-2 whitespace-nowrap">
                                     <div class="flex items-center">
                                         <div class="font-medium text-gray-800">{{pedido_producto.id}}</div>
                                     </div>
-                                </td>
+                                </td> -->
                                 <td class="p-2 whitespace-nowrap">
                                     <div class="flex items-center">
                                         <div class="font-medium text-gray-800">{{pedido_producto.precio_unitario}}</div>
@@ -88,10 +91,7 @@
                                 <td class="p-2 whitespace-nowrap">
                                     <div class="text-left">{{pedido_producto.cantidad}}</div>
                                 </td>
-                                <td class="p-2 whitespace-nowrap">
-                                    <div class="text-left font-medium text-gray-800">{{this.devolverNombre(pedido_producto.id_producto)}}</div>
-                                </td>
-                                <td class="p-2 whitespace-nowrap">
+                                <td class="p-2 whitespace-nowrap" v-show="this.modal.modalBloquear">
                                         <div class="flex flex-row justify-center">
                                             <div>
                                                 <button @click="this.abrirModalEditar(pedido_producto)" type="button">
@@ -142,7 +142,7 @@
                         </div> -->
                         <form action @submit.prevent="editarProducto">
                             <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Modifica los productos del pedido</h1>
-                            <input type="text" v-model="this.producto.nombre_producto" readonly="readonly">
+                            <input type="text" v-model="this.producto.nombre_producto" readonly="readonly" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border">
                             <label for="cantidad" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Cantidad</label>
                             <input v-model="this.objeto.cantidad" type="number" min="1" max="100" id="cantidad" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Cantidad requerida" />
     
@@ -205,12 +205,14 @@ import genericoControl from '../../logic/repartidor'
             return {
                 result : null,
                 catalogo : null,
+                proceso : this.$route.params.proceso,
                 modal : {
                     modalInfo : false,
                     modalLista : false,
                     modalCrear : false,
                     modalEditar : false,
                     modalBorrar : false,
+                    modalBloquear : true
                 },
                 objeto : {
                     id : null,
@@ -230,15 +232,25 @@ import genericoControl from '../../logic/repartidor'
         },
         mounted(){
             this.cargarProductos();
-            this.cargarDatos();
         },
         methods : {
             // Datos para el crud del pedido producto
             cargarDatos(){
+                this.bloquearFunciones();
                 genericoControl.lista_pedido_producto(this.objeto.id_pedido).then(response => {
                     if(response.data.status == 200){
                         this.result = response.data.result;
+                        if (this.proceso == "Iniciado") { // Cambiar a minusculas
+                            genericoControl.proceso_pedido(this.objeto.id_pedido, "en espera").then(response => {
+                                console.log(response);
+                            });
+                        }
                     }else{
+                        if (this.proceso == "en espera") {
+                            genericoControl.proceso_pedido(this.objeto.id_pedido, "Iniciado").then(response => {
+                                console.log(response);
+                            });
+                        }
                         this.result = [{
                             id_pedido : null,
                             id_producto : null,
@@ -284,10 +296,11 @@ import genericoControl from '../../logic/repartidor'
             cargarProductos(){
                 clienteControl.catalogo().then(response => {
                     this.catalogo = response.data.result;
+                    this.cargarDatos();
                 }).catch(error => {
                     console.log(error);
                 });
-            },            
+            },
             // Nos brinda la informacion del producto y su descripcion
             infoProducto(producto){
                 this.modal.modalInfo = true;
@@ -315,12 +328,17 @@ import genericoControl from '../../logic/repartidor'
                     this.modal.modalBorrar = false;
                 }
             },
-            // Funcion estatica
+            // Funcion estetica
             devolverNombre(id){
                 for(let producto of this.catalogo){
                     if (producto.id == id) {
                         return producto.nombre_producto;
                     }
+                }
+            },
+            bloquearFunciones(){
+                if (this.proceso == "en camino" || this.proceso == "entregado" || this.proceso == "terminado") {
+                    this.modal.modalBloquear = false;
                 }
             },
             // Funcion para abrir los modales

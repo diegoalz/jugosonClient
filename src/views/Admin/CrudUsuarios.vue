@@ -1,5 +1,4 @@
 <template>
-
             <button class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 px-3 my-4 py-2 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded margin ">
                 <p class="text-sm font-medium leading-none text-white">Agregar usuario</p>
             </button>
@@ -91,5 +90,29 @@
 <script>
     export default {
         name: "CrudUsuarios",
+        data() {
+            return {
+                result: null,
+                objeto : {
+                    id : null,
+                    nombre : "",
+                    email : "",
+                    telefono : null,
+                    rol : "",
+                    password : "",
+                    password_confirmation : "",
+                    estatus : null
+                },
+                modal : {
+                    modalCrear : false,
+                    modalEditar : false,
+                    modalBorrar : false
+                }
+            }
+            
+        },
+        mounted() {
+            
+        },
     };
 </script>

@@ -67,7 +67,7 @@
                             <tr v-if="result" v-for="pedido in result">
                                 <td class="p-2 whitespace-nowrap">
                                     <div class="flex items-center">
-                                        <div class="font-medium text-gray-800"><router-link :to="{name:'detalle', params:{id_pedido : pedido.id}}">{{pedido.orden_compra}}</router-link></div>
+                                        <div class="font-medium text-gray-800"><router-link :to="{name:'detalle', params:{id_pedido : pedido.id, proceso : pedido.proceso}}">{{pedido.orden_compra}}</router-link></div>
                                     </div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
