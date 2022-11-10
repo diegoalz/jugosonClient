@@ -9,6 +9,7 @@ import AdminPedidos from './views/Admin/TablaPedidos.vue';
 import ClienteHome from './views/Cliente/ClienteHome.vue';
 import ClienteCatalogo from './views/Cliente/Catalogo.vue';
 import ClientePedidos from './views/Cliente/CrudPedidos.vue';
+import ClienteDetallePedido from './views/Cliente/DetallePedido.vue';
 import ClienteTicket from './views/Cliente/Ticket.vue';
 import RepartidorHome from './views/Repartidor/RepartidorHome.vue';
 import RepartidorMisPedidos from './views/Repartidor/MisPedidos.vue';
@@ -36,6 +37,7 @@ const routes = [
             { path: "catalogo", component: ClienteCatalogo},
             { path: "pedidos", component: ClientePedidos},
             { path: "ticket", component: ClienteTicket},
+            { path: "detallePedido/:id_pedido", component: ClienteDetallePedido, name:'detalle'},
         ]
     },
     // Pantallas para los repartidores
