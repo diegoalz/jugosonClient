@@ -28,20 +28,21 @@
                             </tr>
                         </thead>
                         <tbody class="text-sm divide-y divide-gray-100">
-                            <tr>
+                            <tr v-if="result" v-for="pedido in result">
                                 <td class="p-2 whitespace-nowrap">
-                                    <div class="text-left">130231</div>
+                                    <div class="text-left">{{pedido.orden_compra}}</div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
-                                    <div class="text-left">Guanajuato #312</div>
+                                    <div class="text-left">{{pedido.direccion}}</div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
-                                    <div class="text-left font-medium text-gray-800">En camino</div>
+                                    <div class="text-left font-medium text-gray-800">{{pedido.proceso}}</div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
-                                    <div class="text-left font-medium text-gray-800">Activo</div>
+                                    <div class="text-left font-medium text-gray-800">{{pedido.estatus}}</div>
                                 </td>
                             </tr>
+                            <p v-else="result">Cargando...</p>
                         </tbody>
                     </table>
                 </div>
@@ -52,7 +53,27 @@
 </template>
 
 <script>
+    import repartidorControl from '../../logic/repartidor';
     export default {
         name: "PorHacer",
+        data(){
+            return {
+                result : null,
+            }
+        },
+        mounted(){
+            this.cargarDatos();
+        },
+        methods : {
+            cargarDatos(){
+                repartidorControl.porHacer().then(response => {
+                    console.log(response.data);
+                    this.result = response.data.result;
+                }).catch(error => {
+                    console.log(error);
+                });
+            }
+        }
+        
     };
 </script>

@@ -20,8 +20,8 @@ export default {
         const admin = { nombre, email, telefono, rol, password, estatus };
         return axios.post(ENDPOINT_PATH + "editar_users", admin);
     },
-    register(nombre, email, telefono, rol, password) {
-        const admin = { nombre, email, telefono, rol, password};
+    register(nombre, email, telefono, rol, password, password_confirmation) {
+        const admin = { nombre, email, telefono, rol, password, password_confirmation};
         return axios.post(ENDPOINT_PATH + "register", admin);
     },
     
