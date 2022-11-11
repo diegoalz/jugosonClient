@@ -26,6 +26,10 @@ export default {
         const cliente = {  id, orden_compra, direccion  };
         return axios.post(ENDPOINT_PATH + "editar_pedido", cliente);
     },
+    borrar_pedido(id, estatus_actual){
+        const cliente = { id, estatus_actual };
+        return axios.post(ENDPOINT_PATH + "borrar_pedido", cliente);
+    },
     cliente_pedidos() {
         return axios.get(ENDPOINT_PATH + "cliente_pedidos");
     },
@@ -38,4 +42,8 @@ export default {
         const cliente = { id };
         return axios.post(ENDPOINT_PATH + "eliminar_pedido_producto", cliente);
     },
+    editar_pedido_producto( id, cantidad ){
+        const cliente = { id, cantidad }
+        return axios.post(ENDPOINT_PATH + "editar_pedido_producto", cliente);
+    }
 };

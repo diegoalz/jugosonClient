@@ -245,8 +245,12 @@ import clienteControl from '../../logic/cliente';
                 });
             },
             borrarPedido(){
-                console.log("se me olvido poner este endpoint");
-                this.limpiarDatos('borrar');
+                clienteControl.borrar_pedido(this.objeto.id, this.objeto.estatus).then(response=>{
+                    this.cargarDatos();
+                    this.limpiarDatos('eliminar');
+                }).catch(error => {
+                    console.log(error);
+                });
             },
             // Funciones para abrir los modales
             abrirModalEditar(seleccionado){

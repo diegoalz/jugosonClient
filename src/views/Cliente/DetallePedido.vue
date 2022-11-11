@@ -76,7 +76,7 @@
                         <tbody class="text-sm divide-y divide-gray-100">
                             <tr v-if="result" v-for="pedido_producto in result">
                                 <td class="p-2 whitespace-nowrap">
-                                    <div class="text-left font-medium text-gray-800">{{this.devolverNombre(pedido_producto.id_producto)}}</div>
+                                    <div class="text-left font-medium text-gray-800">{{pedido_producto.nombre_producto}}</div>
                                 </td>
                                 <!-- <td class="p-2 whitespace-nowrap">
                                     <div class="flex items-center">
@@ -140,7 +140,7 @@
                                 <button value="{{producto.descripcion}}" @click="infoProducto(producto)">{{producto.nombre_producto}}</button>
                             </div>
                         </div> -->
-                        <form action @submit.prevent="editarProducto">
+                        <form action @submit.prevent="editarPedidoProducto">
                             <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Modifica los productos del pedido</h1>
                             <input type="text" v-model="this.producto.nombre_producto" readonly="readonly" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border">
                             <label for="cantidad" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Cantidad</label>
@@ -242,21 +242,17 @@ import genericoControl from '../../logic/repartidor'
                         this.result = response.data.result;
                         if (this.proceso == "Iniciado") { // Cambiar a minusculas
                             genericoControl.proceso_pedido(this.objeto.id_pedido, "en espera").then(response => {
-                                console.log(response);
+                                alert("Su pedido sera atendido");
                             });
                         }
                     }else{
                         if (this.proceso == "en espera") {
                             genericoControl.proceso_pedido(this.objeto.id_pedido, "Iniciado").then(response => {
-                                console.log(response);
+                                alert("Su pedido esta vacio");
                             });
                         }
-                        this.result = [{
-                            id_pedido : null,
-                            id_producto : null,
-                            precio_unitario : "no existe ningun valor",
-                            cantidad : null
-                        }];
+                        alert("Agregue productos");
+                        this.result = true;
                     }
                 }).catch(error => {
                     console.log(error);
@@ -264,33 +260,47 @@ import genericoControl from '../../logic/repartidor'
             },
             crearPedidoProducto(){
                 let existe = false;
-                for(let producto of this.result){
-                    if (producto.id_producto == this.objeto.id_producto) {
-                        existe = true;
+                if(this.result != true){
+                    for(let producto of this.result){
+                        if (producto.id_producto == this.objeto.id_producto) {
+                            existe = true;
+                        }
                     }
-                }
-                if (existe == false) {
+                    if (existe == false) {
+                        clienteControl.agregar_pedido_producto(this.objeto.id_pedido, this.objeto.id_producto, this.objeto.precio_unitario, this.objeto.cantidad).then(response => {
+                            this.cargarDatos();
+                            this.limpiarDatos('crear');
+                        }).catch(error => {
+                            console.log(error);
+                        });
+                    }else{
+                        alert("Ya existe modifique su pedido");
+                    }
+                }else{
                     clienteControl.agregar_pedido_producto(this.objeto.id_pedido, this.objeto.id_producto, this.objeto.precio_unitario, this.objeto.cantidad).then(response => {
                         this.cargarDatos();
                         this.limpiarDatos('crear');
                     }).catch(error => {
                         console.log(error);
                     });
-                }else{
-                    alert("Ya existe modifique su pedido");
                 }
+
             },
             borrarPedidoProducto(){
                 clienteControl.eliminar_pedido_producto(this.objeto.id).then(response=>{
                     this.cargarDatos();
-                    this.modal.modalBorrar = false;
+                    this.limpiarDatos('eliminar');
                 }).catch(error => {
                     console.log(error);
                 });
             },
             editarPedidoProducto(){
-                console.log("falta editar pedido producto");
-                this.limpiarDatos('editar');
+                clienteControl.editar_pedido_producto(this.objeto.id, this.objeto.cantidad).then(response => {
+                    this.cargarDatos();
+                    this.limpiarDatos('editar');
+                }).catch(error => {
+                    console.log(error);
+                });
             },
             // Cargar productos
             cargarProductos(){
@@ -328,14 +338,6 @@ import genericoControl from '../../logic/repartidor'
                     this.modal.modalBorrar = false;
                 }
             },
-            // Funcion estetica
-            devolverNombre(id){
-                for(let producto of this.catalogo){
-                    if (producto.id == id) {
-                        return producto.nombre_producto;
-                    }
-                }
-            },
             bloquearFunciones(){
                 if (this.proceso == "en camino" || this.proceso == "entregado" || this.proceso == "terminado") {
                     this.modal.modalBloquear = false;
@@ -344,9 +346,10 @@ import genericoControl from '../../logic/repartidor'
             // Funcion para abrir los modales
             abrirModalEditar(seleccionado){
                 this.modal.modalEditar = true;
-                this.objeto.id_producto = seleccionado.id;
+                this.objeto.id = seleccionado.id;
+                this.objeto.id_producto = seleccionado.id_producto;
                 this.objeto.cantidad = Number(seleccionado.cantidad);
-                this.producto.nombre_producto = this.devolverNombre(seleccionado.id);
+                this.producto.nombre_producto = seleccionado.nombre_producto;
             },
             avisoBorrar(seleccionado){
                 this.modal.modalBorrar = true;
