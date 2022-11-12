@@ -20,8 +20,8 @@ export default {
     porHacer() {
         return axios.get(ENDPOINT_PATH + "porHacer");
     },
-    asignar_pedido(pedido) {
-        const repartidor = { pedido };
+    asignar_pedido(id) {
+        const repartidor = { id };
         return axios.post(ENDPOINT_PATH + "asignar_pedido", repartidor);
     },
         // end repartidores

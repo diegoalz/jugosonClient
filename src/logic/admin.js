@@ -12,16 +12,16 @@ export default {
     all_users() {
         return axios.get(ENDPOINT_PATH + "all_users");
     },
-    estatus_users(nuevo_estatus, aviso, user) {
-        const admin = { nuevo_estatus, aviso, user };
+    estatus_users(estatus_actual, id) {
+        const admin = { estatus_actual, id };
         return axios.post(ENDPOINT_PATH + "estatus_users", admin);
     },
-    editar_users(nombre, email, telefono, rol, password, estatus) {
-        const admin = { nombre, email, telefono, rol, password, estatus };
+    editar_users(id, nombre, email, telefono, rol, password, password_confirmation, estatus) {
+        const admin = { id, nombre, email, telefono, rol, password, password_confirmation, estatus };
         return axios.post(ENDPOINT_PATH + "editar_users", admin);
     },
     register(nombre, email, telefono, rol, password, password_confirmation) {
-        const admin = { nombre, email, telefono, rol, password, password_confirmation};
+        const admin = {nombre, email, telefono, rol, password, password_confirmation};
         return axios.post(ENDPOINT_PATH + "register", admin);
     },
     
