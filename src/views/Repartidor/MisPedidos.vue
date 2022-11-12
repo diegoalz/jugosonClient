@@ -34,13 +34,13 @@
                         <tbody class="text-sm divide-y divide-gray-100">
                             <tr v-if="result" v-for="pedido in result">
                                 <td class="p-2 whitespace-nowrap">
-                                    <div class="text-left">{{pedido.orden_compra}}</div>
+                                    <div class="text-left"><router-link :to="{name:'detalleRepartidor', params:{id_pedido : pedido.id}}">{{pedido.orden_compra}}</router-link></div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
                                     <div class="text-left">{{pedido.proceso}}</div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
-                                    <div class="text-left font-medium text-gray-800">{{pedido.id_cliente}}</div>
+                                    <div class="text-left font-medium text-gray-800">{{pedido.nombre}}</div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
                                     <div class="text-left font-medium text-gray-800">{{pedido.direccion}}</div>

@@ -122,20 +122,12 @@
 							</div>
 							<hr class="mb-6 border-t" />
 							<div class="text-center">
-								<a
-									class="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800"
-									href="#"
-								>
-									Olvidaste tu contraseña?
-								</a>
-							</div>
-							<div class="text-center">
-								<a
+								<router-link to="/"
 									class="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800"
 									href="./index.html"
 								>
 									Ya tienes cuenta? Dirigete al login!
-								</a>
+								</router-link>
 							</div>
 						</form>
 					</div>

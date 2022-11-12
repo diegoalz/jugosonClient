@@ -198,7 +198,7 @@
 </template>
 <script>
 import clienteControl from '../../logic/cliente';
-import genericoControl from '../../logic/repartidor'
+import genericoControl from '../../logic/repartidor';
     export default {
         name : "DetallePedido",
         data() {

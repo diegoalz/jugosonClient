@@ -64,7 +64,6 @@ import adminControl from '../../logic/admin';
         methods: {
             cargarDatos(){
                 adminControl.all_clientes().then(response => {
-                    console.log(response);
                     this.result = response.data.result;
                 }).catch(error=>{
                     console.log(error);

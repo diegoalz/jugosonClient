@@ -15,6 +15,7 @@ import RepartidorHome from './views/Repartidor/RepartidorHome.vue';
 import RepartidorMisPedidos from './views/Repartidor/MisPedidos.vue';
 import RepartidorPorHacer from './views/Repartidor/PorHacer.vue';
 import RepartidorEntrega from './views/Repartidor/Entrega.vue';
+import DetalleGenerico from './views/Todos/DetalleGenerico.vue';
 
 const routes = [
     // Pantalla generales
@@ -28,6 +29,7 @@ const routes = [
             { path: "usuarios", component: AdminUsuarios},
             { path: "clientes", component: AdminClientes},
             { path: "pedidos", component: AdminPedidos},
+            { path: "detalleGenerico/:id_pedido", component: DetalleGenerico, name:'detalleAdmin'},
         ]
     },
     // Pantallas para los clientes
@@ -47,6 +49,7 @@ const routes = [
             { path: "misPedidos", component: RepartidorMisPedidos},
             { path: "porHacer", component: RepartidorPorHacer},
             { path: "entrega", component: RepartidorEntrega},
+            { path: "detallePedido/:id_pedido", component: DetalleGenerico, name:'detalleRepartidor'},
         ]
     },
     // { path: "/", component: Home },
