@@ -1,8 +1,17 @@
 <template>
     <!-- Formulario para agregar -->
-<button v-show="this.modal.modalBloquear"  @click="modal.modalCrear = true" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 px-3 my-4 py-2 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded margin ">
-            <p class="text-sm font-medium leading-none text-white">Agregar productos a pedido</p>
-        </button>
+<div v-show="this.modal.modalBloquear" class="flex justify-evenly w-full max-w-2xl mx-auto">
+    <button @click="modal.modalCrear = true" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 px-3 my-4 py-2 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded margin ">
+        <p class="text-sm font-medium leading-none text-white">Agregar productos a pedido</p>
+    </button>
+    <button v-show="this.modal.cancelar"  @click="cambiarProceso()" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 px-3 my-4 py-2 bg-red-600 hover:bg-orange-600 focus:outline-none rounded margin ">
+        <p class="text-sm font-medium leading-none text-white">Cancelar pedido ❌</p>
+    </button>
+    <button v-show="this.modal.aceptar"  @click="cambiarProceso()" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 px-3 my-4 py-2 bg-green-600 hover:bg-orange-600 focus:outline-none rounded margin ">
+        <p class="text-sm font-medium leading-none text-white">Hacer pedido ✔</p>
+    </button>
+</div>
+        
         <!-- Modal crear -->
         <div class="py-24 bg-gray-700/50 z-10 absolute top-0 right-0 bottom-0 left-0" id="modal" v-show="modal.modalCrear">
         <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
@@ -212,7 +221,9 @@ import genericoControl from '../../logic/repartidor';
                     modalCrear : false,
                     modalEditar : false,
                     modalBorrar : false,
-                    modalBloquear : true
+                    modalBloquear : true,
+                    aceptar : false,
+                    cancelar : false
                 },
                 objeto : {
                     id : null,
@@ -240,18 +251,12 @@ import genericoControl from '../../logic/repartidor';
                 genericoControl.lista_pedido_producto(this.objeto.id_pedido).then(response => {
                     if(response.data.status == 200){
                         this.result = response.data.result;
-                        if (this.proceso == "Iniciado") { // Cambiar a minusculas
-                            genericoControl.proceso_pedido(this.objeto.id_pedido, "en espera").then(response => {
-                                alert("Su pedido sera atendido");
-                            });
+                        if(this.proceso == "en espera"){
+                            this.modal.cancelar = true;
+                        }else{
+                            this.modal.aceptar = true;
                         }
                     }else{
-                        if (this.proceso == "en espera") {
-                            genericoControl.proceso_pedido(this.objeto.id_pedido, "Iniciado").then(response => {
-                                alert("Su pedido esta vacio");
-                            });
-                        }
-                        alert("Agregue productos");
                         this.result = true;
                     }
                 }).catch(error => {
@@ -311,6 +316,12 @@ import genericoControl from '../../logic/repartidor';
                     console.log(error);
                 });
             },
+            cambiarProceso(){
+                let nuevo_proceso = (this.proceso == "Iniciado")?'en espera':'Iniciado';
+                genericoControl.proceso_pedido(this.objeto.id_pedido, nuevo_proceso).then(response => {
+                    this.$router.go(-1);
+                })
+            },
             // Nos brinda la informacion del producto y su descripcion
             infoProducto(producto){
                 this.modal.modalInfo = true;
@@ -325,6 +336,9 @@ import genericoControl from '../../logic/repartidor';
             },
             // Funcion que se debe usar cada que se cierre un modal
             limpiarDatos(modal){
+                this.producto.descripcion = "";
+                this.producto.actual = "Escofe un producto";
+                this.modal.modalLista = false;
                 this.objeto.id = null;
                 this.objeto.id_producto = null;
                 this.objeto.precio_unitario = null;

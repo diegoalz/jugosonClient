@@ -22,53 +22,31 @@
                             <th class="p-2">
                                 <div class="font-semibold text-left">Precio</div>
                             </th>
+                            <th class="p-2">
+                                <div class="font-semibold text-left">Total</div>
+                            </th>
                         </tr>
                     </thead>
 
                     <tbody class="text-sm divide-y divide-gray-100">
                         <!-- record 1 -->
-                        <tr>
+                        <tr v-for="producto in productos">
                             <td class="p-2">
                                 <div class="text-left text-gray-800">
-                                    Jugo limón
+                                    {{producto.nombre_producto}}
                                 </div>
                             </td>
                             <td class="p-2">
-                                <div class="text-left">3</div>
+                                <div class="text-left">{{producto.cantidad}}</div>
                             </td>
                             <td class="p-2">
                                 <div class="text-left font-medium text-green-500">
-                                    MXN $100
+                                    {{producto.precio_unitario}}
                                 </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="p-2">
-                                <div class="text-left text-gray-800">
-                                    Jugo naranja
-                                </div>
-                            </td>
-                            <td class="p-2">
-                                <div class="text-left">3</div>
                             </td>
                             <td class="p-2">
                                 <div class="text-left font-medium text-green-500">
-                                    MXN $100
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="p-2">
-                                <div class="text-left text-gray-800">
-                                    Kilo de Naranja
-                                </div>
-                            </td>
-                            <td class="p-2">
-                                <div class="text-left">3</div>
-                            </td>
-                            <td class="p-2">
-                                <div class="text-left font-medium text-green-500">
-                                    MXN $100
+                                    {{producto.precio_unitario * producto.cantidad}}
                                 </div>
                             </td>
                         </tr>
@@ -79,7 +57,7 @@
             <!-- total amount -->
             <div class="flex justify-end font-bold space-x-4 text-2xl border-t border-gray-100 px-5 py-4">
                 <div>Total</div>
-                <div class="text-green-600">300 <span x-text="total.toFixed(2)">MXN</span></div>
+                <div class="text-green-600">100<span x-text="total.toFixed(2)">MXN</span></div>
             </div>
 
             <div class="flex justify-end">
@@ -96,5 +74,13 @@
 <script>
     export default {
         name: "Ticket",
+        data(){
+            return {
+                Total : null
+            }
+        },
+        props : {
+            productos : Object
+        }
     };
 </script>

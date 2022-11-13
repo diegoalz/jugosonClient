@@ -6,6 +6,7 @@ import AdminProductos from './views/Admin/CrudProductos.vue';
 import AdminUsuarios from './views/Admin/CrudUsuarios.vue';
 import AdminClientes from './views/Admin/TablaClientes.vue';
 import AdminPedidos from './views/Admin/TablaPedidos.vue';
+import AdminEnEspera from './views/Admin/EnEspera.vue';
 import ClienteHome from './views/Cliente/ClienteHome.vue';
 import ClienteCatalogo from './views/Cliente/Catalogo.vue';
 import ClientePedidos from './views/Cliente/CrudPedidos.vue';
@@ -29,6 +30,7 @@ const routes = [
             { path: "usuarios", component: AdminUsuarios},
             { path: "clientes", component: AdminClientes},
             { path: "pedidos", component: AdminPedidos},
+            { path: "enEspera", component: AdminEnEspera},
             { path: "detalleGenerico/:id_pedido", component: DetalleGenerico, name:'detalleAdmin'},
         ]
     },

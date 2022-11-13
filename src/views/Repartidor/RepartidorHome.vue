@@ -44,7 +44,7 @@
                     <!-- <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Calendar</a> -->
                     <router-link class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page" to="/repartidor/misPedidos">Mis pedidos</router-link>
                     <router-link class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" to="/repartidor/porHacer">Por hacer</router-link>
-                    <router-link class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" to="/repartidor/entrega">Entrega</router-link>
+                    <!-- <router-link class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" to="/repartidor/entrega">Entrega</router-link> -->
                 </div>
                 
                 </div>
@@ -112,6 +112,7 @@
             </div>
         </div>
         </nav>
+        <br>
     <router-view />
 </template>
 

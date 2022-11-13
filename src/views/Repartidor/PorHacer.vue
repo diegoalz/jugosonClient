@@ -1,6 +1,4 @@
 <template>
-    <h1>Pagina para que el repartidor vea los pedidos que necesita ver</h1>
-
         <!-- component -->
         <div class="flex flex-col justify-center h-full">
         <!-- Table -->

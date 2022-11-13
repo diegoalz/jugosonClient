@@ -54,7 +54,7 @@ export default {
     
     all_pedidos() {
         return axios.get(ENDPOINT_PATH + "all_pedidos");
-    },
+    }
     // end admin
 
 };

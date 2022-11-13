@@ -41,7 +41,7 @@
             <!-- <a href="#" class="text-green-500 hover:text-green-600 mt-3 focus:outline-none font-bold underline">
                 register
             </a> -->
-            <router-link class="text-green-500 hover:text-green-600 mt-3 focus:outline-none font-bold underline" to="/register">Register</router-link>
+            <router-link class="text-green-500 hover:text-green-600 mt-3 focus:outline-none font-bold underline" to="/register">Registrate</router-link>
             </p>
         </div>
         </div>

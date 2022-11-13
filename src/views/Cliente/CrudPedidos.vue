@@ -254,15 +254,19 @@ import clienteControl from '../../logic/cliente';
             },
             // Funciones para abrir los modales
             abrirModalEditar(seleccionado){
-                this.modal.modalEditar = true;
-                this.objeto.id = seleccionado.id;
-                this.objeto.orden_compra = seleccionado.orden_compra;
-                this.objeto.direccion = seleccionado.direccion;
+                if (seleccionado.proceso == 'Iniciado' || seleccionado.proceso == 'en espera') {
+                    this.modal.modalEditar = true;
+                    this.objeto.id = seleccionado.id;
+                    this.objeto.orden_compra = seleccionado.orden_compra;
+                    this.objeto.direccion = seleccionado.direccion;
+                }
             },
             avisoBorrar(seleccionado){
-                this.modal.modalBorrar = true;
-                this.objeto.id = seleccionado.id;
-                this.objeto.estatus = seleccionado.estatus
+                if (seleccionado.proceso == 'Iniciado' || seleccionado.proceso == 'en espera'){
+                    this.modal.modalBorrar = true;
+                    this.objeto.id = seleccionado.id;
+                    this.objeto.estatus = seleccionado.estatus
+                }
             },
             // Funcion que se debe usar cada que se cierre un modal
             limpiarDatos(modal){
