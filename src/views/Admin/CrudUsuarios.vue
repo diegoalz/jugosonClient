@@ -1,6 +1,6 @@
 <template>
             <button @click="modal.modalCrear = true" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 px-3 my-4 py-2 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded margin ">
-                <p class="text-sm font-medium leading-none text-white">Agregar usuario</p>
+                <p class="text-sm font-medium leading-none text-white">Agregar empleado</p>
             </button>
             <!-- Modal crear -->
         <div class="py-12 bg-gray-700/50 z-10 fixed top-0 right-0 bottom-0 left-0" id="modal" v-show="modal.modalCrear">
@@ -9,9 +9,9 @@
                     <div class="w-full flex justify-start text-gray-600 mb-3">
                         <svg class="h-16 w-16 text-blue-500"  width="24"  height="24"  viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M12 20h9" />  <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" /></svg>
                     </div>
-                    <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Agregar un producto</h1>
+                    <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Agregar un empleado</h1>
                     <form action @submit.prevent="registrarUsuario" class="h-80 overflow-auto">
-                        <label for="nombre" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Nombre del usuario</label>
+                        <label for="nombre" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Nombre del empleado</label>
                         <input v-model="objeto.nombre" id="nombre_producto" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Nombre completo" />
                         <label for="email" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Email</label>
                         <input type="email" v-model="objeto.email" name="descripcion" id="descripcion" cols="50" rows="6" placeholder="ejemplo@gmail.com" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border">
@@ -47,7 +47,7 @@
         <!-- Table -->
         <div class="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
             <header class="px-5 py-4 border-b border-gray-100">
-                        <h2 class="font-semibold text-gray-800">Usuario</h2>
+                        <h2 class="font-semibold text-gray-800">Empleado</h2>
             </header>
             <div class="p-3">
                 <div class="overflow-x-auto">

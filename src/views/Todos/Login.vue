@@ -24,7 +24,7 @@
             >
             <select id="tipoCuenta" name="tipoCuenta" v-model="tipo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                 <option value="cliente">Cliente</option>
-                <option value="usuario">Usuario</option>
+                <option value="usuario">Empleado</option>
             </select>
             <button onclick="return this.login" class="flex justify-center items-center bg-blue-500 hover:bg-blue-600 text-white focus:outline-none focus:ring rounded px-3 py-1">
                 <svg class="w-5 h-5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
