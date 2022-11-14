@@ -24,7 +24,7 @@
                                     <div class="font-semibold text-left">Cliente</div>
                                 </th>
                                 <th class="p-2 whitespace-nowrap">
-                                    <div class="font-semibold text-left">Direccion</div>
+                                    <div class="font-semibold text-left">Dirección</div>
                                 </th>
                                 <th class="p-2 whitespace-nowrap">
                                     <div class="font-semibold text-left text-center">Acciones</div>

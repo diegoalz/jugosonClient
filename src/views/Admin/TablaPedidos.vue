@@ -21,7 +21,7 @@
                                     <div class="font-semibold text-left">Nombre repartidor</div>
                                 </th>
                                 <th class="p-2 whitespace-nowrap">
-                                    <div class="font-semibold text-left">Direccion</div>
+                                    <div class="font-semibold text-left">Dirección</div>
                                 </th>
                                 <th class="p-2 whitespace-nowrap">
                                     <div class="font-semibold text-left">Fecha de inicio</div>

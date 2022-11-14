@@ -26,7 +26,7 @@
 								</div>
 								<div class="md:ml-2">
 									<label class="block mb-2 text-sm font-bold text-gray-700" for="razon_social">
-										Razon social
+										Razón social
 									</label>
 									<input
 										class="w-full px-3 py-2 text-sm leading-tight text-black border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
@@ -101,7 +101,7 @@
 								</div>
 								<div class="md:ml-2">
 									<label class="block mb-2 text-sm font-bold text-gray-700" for="lastName">
-										Direccion
+										Dirección
 									</label>
 									<input
 										class="w-full px-3 py-2 text-sm leading-tight text-black border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
