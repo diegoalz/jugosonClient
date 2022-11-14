@@ -20,7 +20,7 @@
                         <label for="rol" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Rol</label>
                         <select id="rol" name="rol" v-model="objeto.rol" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                             <option value="repartidor">Repartidor</option>
-                            <option value="administrador">Administrador</option>
+                            <option value="admin">Administrador</option>
                         </select>
                         <label for="password" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Contraseña</label>
                         <input v-model="objeto.password" id="password" type="password" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="password" />

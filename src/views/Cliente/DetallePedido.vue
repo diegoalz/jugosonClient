@@ -4,10 +4,10 @@
     <button @click="modal.modalCrear = true" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 px-3 my-4 py-2 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded margin ">
         <p class="text-sm font-medium leading-none text-white">Agregar productos a pedido</p>
     </button>
-    <button v-show="this.modal.cancelar"  @click="cambiarProceso()" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 px-3 my-4 py-2 bg-red-600 hover:bg-orange-600 focus:outline-none rounded margin ">
+    <button v-show="this.modal.cancelar" @click="cambiarProceso()" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 px-3 my-4 py-2 bg-red-600 hover:bg-orange-600 focus:outline-none rounded margin ">
         <p class="text-sm font-medium leading-none text-white">Cancelar pedido ❌</p>
     </button>
-    <button v-show="this.modal.aceptar"  @click="cambiarProceso()" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 px-3 my-4 py-2 bg-green-600 hover:bg-orange-600 focus:outline-none rounded margin ">
+    <button v-show="this.modal.aceptar" @click="cambiarProceso()" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 px-3 my-4 py-2 bg-green-600 hover:bg-orange-600 focus:outline-none rounded margin ">
         <p class="text-sm font-medium leading-none text-white">Hacer pedido ✔</p>
     </button>
 </div>
@@ -272,12 +272,14 @@ import genericoControl from '../../logic/repartidor';
                         }
                     }
                     if (existe == false) {
-                        clienteControl.agregar_pedido_producto(this.objeto.id_pedido, this.objeto.id_producto, this.objeto.precio_unitario, this.objeto.cantidad).then(response => {
-                            this.cargarDatos();
-                            this.limpiarDatos('crear');
-                        }).catch(error => {
-                            console.log(error);
-                        });
+                        if(this.proceso == "Iniciado" || this.proceso == "en espera"){
+                            clienteControl.agregar_pedido_producto(this.objeto.id_pedido, this.objeto.id_producto, this.objeto.precio_unitario, this.objeto.cantidad).then(response => {
+                                this.cargarDatos();
+                                this.limpiarDatos('crear');
+                            }).catch(error => {
+                                console.log(error);
+                            });
+                        }
                     }else{
                         alert("Ya existe modifique su pedido");
                     }
@@ -319,7 +321,7 @@ import genericoControl from '../../logic/repartidor';
             cambiarProceso(){
                 let nuevo_proceso = (this.proceso == "Iniciado")?'en espera':'Iniciado';
                 genericoControl.proceso_pedido(this.objeto.id_pedido, nuevo_proceso).then(response => {
-                    this.$router.go(-1);
+                    this.$router.push("/cliente/pedidos");
                 })
             },
             // Nos brinda la informacion del producto y su descripcion
@@ -337,7 +339,7 @@ import genericoControl from '../../logic/repartidor';
             // Funcion que se debe usar cada que se cierre un modal
             limpiarDatos(modal){
                 this.producto.descripcion = "";
-                this.producto.actual = "Escofe un producto";
+                this.producto.actual = "Escoge un producto";
                 this.modal.modalLista = false;
                 this.objeto.id = null;
                 this.objeto.id_producto = null;
