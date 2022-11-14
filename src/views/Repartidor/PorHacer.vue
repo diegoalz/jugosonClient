@@ -21,10 +21,10 @@
                                     <div class="font-semibold text-left">Proceso</div>
                                 </th>
                                 <th class="p-2 whitespace-nowrap">
-                                    <div class="font-semibold text-left">Estatus</div>
+                                    <div class="font-semibold text-left">Fecha</div>
                                 </th>
                                 <th class="p-2 whitespace-nowrap">
-                                    <div class="font-semibold text-left text-center">Seleccionar</div>
+                                    <div class="font-semibold text-left text-center">Acciones</div>
                                 </th>
                             </tr>
                         </thead>
@@ -40,7 +40,7 @@
                                     <div class="text-left font-medium text-gray-800">{{pedido.proceso}}</div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
-                                    <div class="text-left font-medium text-gray-800">{{pedido.estatus}}</div>
+                                    <div class="text-left font-medium text-gray-800">{{pedido.updated_at}}</div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
                                     <div class="justify-text my-8 select-none flex">

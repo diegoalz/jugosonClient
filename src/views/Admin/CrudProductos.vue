@@ -1,9 +1,9 @@
 <template>
     <button @click="modal.modalCrear=true" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 px-3 my-4 py-2 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded margin ">
-        <p class="text-sm font-medium leading-none text-white">Agregar pedidos</p>
+        <p class="text-sm font-medium leading-none text-white">Registrar producto</p>
     </button>
         <!-- Modal crear -->
-        <div class="py-12 bg-gray-700/50 z-10 absolute top-0 right-0 bottom-0 left-0" id="modal" v-show="modal.modalCrear">
+        <div class="py-12 bg-gray-700/50 z-10 fixed top-0 right-0 bottom-0 left-0" id="modal" v-show="modal.modalCrear">
             <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
                 <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
                     <div class="w-full flex justify-start text-gray-600 mb-3">
@@ -12,11 +12,11 @@
                     <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Agregar un producto</h1>
                     <form action @submit.prevent="crearProducto">
                         <label for="nombre_producto" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Nombre del producto</label>
-                        <input v-model="objeto.nombre_producto" id="nombre_producto" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Nombre completo" />
+                        <input v-model="objeto.nombre_producto" id="nombre_producto" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Nombre producto" />
                         <label for="descripcion" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Descripción</label>
                         <textarea v-model="objeto.descripcion" name="descripcion" id="descripcion" cols="50" rows="6" placeholder="Presentación, tamaño, etc..." class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full flex items-center pl-3 text-sm border-gray-300 rounded border"></textarea>
                         <label for="precio_actual" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Precio</label>
-                        <input v-model="objeto.precio_actual" id="precio" type="number" step="0.001" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="$50" />
+                        <input v-model="objeto.precio_actual" id="precio" type="number" step="0.001" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Pesos MX" />
                         <div class="flex items-center justify-center w-full">
                             <button class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">Guardar</button>
                             <button class="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm" @click="modal.modalCrear=false" type="button">Cancelar</button>
@@ -76,7 +76,7 @@
                                     <div class="text-left font-medium text-gray-800">{{producto.precio_actual}}</div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
-                                    <div class="text-left font-medium text-gray-800">{{producto.estatus}}</div>
+                                    <div class="text-left font-medium text-gray-800">{{(producto.estatus == true)?"Activo":"Inactivo"}}</div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
                                         <div class="flex flex-row justify-center">
@@ -129,7 +129,7 @@
             </div>
             <!-- modasl edit -->
 
-            <div class="py-12 bg-gray-700/50 z-10 absolute top-0 right-0 bottom-0 left-0" id="modal" v-show="modal.modalEditar">
+            <div class="py-12 bg-gray-700/50 z-10 fixed top-0 right-0 bottom-0 left-0" id="modal" v-show="modal.modalEditar">
                 <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
                     <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
                         <div class="w-full flex justify-start text-gray-600 mb-3">
@@ -138,13 +138,13 @@
 
                         </div>
                         <form action @submit.prevent="editarProducto">
-                            <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Modifica el pedido</h1>
+                            <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Modifica el producto</h1>
                             <label for="nombre_producto" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Nombre del producto</label>
                             <input v-model="objeto.nombre_producto" id="nombre_producto" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Escriba algo"/>
                             <label for="descripcion" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Descripción</label>
                             <textarea v-model="objeto.descripcion" name="descripcion" id="descripcion" cols="50" rows="6" placeholder="Presentación, tamaño, etc..." class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full flex items-center pl-3 text-sm border-gray-300 rounded border"></textarea>
                             <label for="precio_actual" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Precio</label>
-                            <input v-model="objeto.precio_actual" id="precio" type="number" step="0.001" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="$50" />
+                            <input v-model="objeto.precio_actual" id="precio" type="number" step="0.001" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Pesos MX" />
     
                             <div class="flex items-center justify-center w-full">
                                 <button class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">Submit</button>
@@ -163,7 +163,7 @@
             </div>
             <!-- modal borrar -->
 
-            <div v-show="modal.modalBorrar" class="py-12 bg-gray-700/50 min-w-screen h-screen animated fadeIn faster  fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover">
+            <div v-show="modal.modalBorrar" class="py-12 bg-gray-700/50 min-w-screen h-screen animated fadeIn faster fixed left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover">
                 <!-- <div class="absolute bg-black opacity-80 inset-0 z-0"></div> -->
                 <div class="w-full  max-w-lg p-5 relative mx-auto my-auto rounded-xl shadow-lg  bg-white ">
                     <!--content-->

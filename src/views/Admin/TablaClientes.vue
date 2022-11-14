@@ -2,7 +2,7 @@
     <!-- component -->
     <div class="flex flex-col justify-center h-full">
         <!-- Table -->
-        <div class="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
+        <div class="w-full max-w-4xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
             <header class="px-5 py-4 border-b border-gray-100">
                 <h2 class="font-semibold text-gray-800">Clientes</h2>
             </header>
@@ -23,6 +23,9 @@
                                 <th class="p-2 whitespace-nowrap">
                                     <div class="font-semibold text-left">RFC</div>
                                 </th>
+                                <th class="p-2 whitespace-nowrap">
+                                    <div class="font-semibold text-left">Dirección</div>
+                                </th>
                             </tr>
                         </thead>
                         <tbody class="text-sm divide-y divide-gray-100" v-if="result" v-for="cliente in result">
@@ -38,6 +41,9 @@
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
                                     <div class="text-left font-medium text-gray-800">{{cliente.RFC}}</div>
+                                </td>
+                                <td class="p-2 whitespace-nowrap">
+                                    <div class="text-left font-medium text-gray-800">{{cliente.direccion}}</div>
                                 </td>
                             </tr>
                         </tbody>

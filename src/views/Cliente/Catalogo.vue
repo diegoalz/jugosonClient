@@ -17,13 +17,13 @@
                                     </svg>
                                 </div>
                                 <div class="bg-yellow-200 py-1.5 px-6 rounded-full">
-                                    <p tabindex="0" class="focus:outline-none text-xs text-yellow-700">Featured</p>
+                                    <p tabindex="0" class="focus:outline-none text-xs text-yellow-700">Descuento 50%</p>
                                 </div>
                             </div>
                             <div class="p-4">
                                 <div class="flex items-center">
                                     <h2 tabindex="0" class="focus:outline-none text-lg font-semibold">Varios jugos</h2>
-                                    <p tabindex="0" class="focus:outline-none text-xs text-gray-600 pl-5">4 days ago</p>
+                                    <p tabindex="0" class="focus:outline-none text-xs text-gray-600 pl-5">$150 MX</p>
                                 </div>
                                 <p tabindex="0" class="focus:outline-none text-xs text-gray-600 mt-2 text-left">Paquete de varias jugos y aguas frescas</p>
                                 <div class="flex items-center justify-between py-4">
@@ -48,13 +48,13 @@
                                     </svg>
                                 </div>
                                 <div class="bg-yellow-200 py-1.5 px-6 rounded-full">
-                                    <p tabindex="0" class="focus:outline-none text-xs text-yellow-700">Featured</p>
+                                    <p tabindex="0" class="focus:outline-none text-xs text-yellow-700">Descuento 50%</p>
                                 </div>
                             </div>
                             <div class="p-4">
                                 <div class="flex items-center">
                                     <h2 tabindex="0" class="focus:outline-none text-lg font-semibold">Jugo de limón</h2>
-                                    <p tabindex="0" class="focus:outline-none text-xs text-gray-600 pl-5">4 days ago</p>
+                                    <p tabindex="0" class="focus:outline-none text-xs text-gray-600 pl-5">$150 MX</p>
                                 </div>
                                 <p tabindex="0" class="focus:outline-none text-xs text-gray-600 mt-2 text-left">Paquete de varios jugos de limón, usted elige la cantidad deseada.</p>
                                 <div class="flex items-center justify-between py-4">
@@ -79,13 +79,13 @@
                                     </svg>
                                 </div>
                                 <div class="bg-yellow-200 py-1.5 px-6 rounded-full">
-                                    <p tabindex="0" class="focus:outline-none text-xs text-yellow-700">Featured</p>
+                                    <p tabindex="0" class="focus:outline-none text-xs text-yellow-700">Descuento 50%</p>
                                 </div>
                             </div>
                             <div class="p-4">
                                 <div class="flex items-center">
                                     <h2 tabindex="0" class="focus:outline-none text-lg font-semibold">Jugo de naranja</h2>
-                                    <p tabindex="0" class="focus:outline-none text-xs text-gray-600 pl-5">4 days ago</p>
+                                    <p tabindex="0" class="focus:outline-none text-xs text-gray-600 pl-5">$150 MX</p>
                                 </div>
                                 <p tabindex="0" class="focus:outline-none text-xs text-gray-600 mt-2 text-left">Selección de jugos de naranja, cantidad al gusto.</p>
                                 <div class="flex items-center justify-between py-4">
@@ -110,13 +110,13 @@
                                     </svg>
                                 </div>
                                 <div class="bg-yellow-200 py-1.5 px-6 rounded-full">
-                                    <p tabindex="0" class="focus:outline-none text-xs text-yellow-700">Featured</p>
+                                    <p tabindex="0" class="focus:outline-none text-xs text-yellow-700">Descuento 50%</p>
                                 </div>
                             </div>
                             <div class="p-4">
                                 <div class="flex items-center">
                                     <h2 tabindex="0" class="focus:outline-none text-lg font-semibold">Agua de jamaica</h2>
-                                    <p tabindex="0" class="focus:outline-none text-xs text-gray-600 pl-5">4 days ago</p>
+                                    <p tabindex="0" class="focus:outline-none text-xs text-gray-600 pl-5">$150 MX</p>
                                 </div>
                                 <p tabindex="0" class="focus:outline-none text-xs text-gray-600 mt-2 text-left">Selección de aguas frescas de estracto de jamaica.</p>
                                 <div class="flex items-center justify-between py-4">

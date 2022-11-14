@@ -5,15 +5,15 @@
         <p class="text-sm font-medium leading-none text-white">Agregar productos a pedido</p>
     </button>
     <button v-show="this.modal.cancelar" @click="cambiarProceso()" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 px-3 my-4 py-2 bg-red-600 hover:bg-orange-600 focus:outline-none rounded margin ">
-        <p class="text-sm font-medium leading-none text-white">Cancelar pedido ❌</p>
+        <p class="text-sm font-medium leading-none text-white">Cancelar el pedido ❌</p>
     </button>
     <button v-show="this.modal.aceptar" @click="cambiarProceso()" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 px-3 my-4 py-2 bg-green-600 hover:bg-orange-600 focus:outline-none rounded margin ">
-        <p class="text-sm font-medium leading-none text-white">Hacer pedido ✔</p>
+        <p class="text-sm font-medium leading-none text-white">Hacer el pedido ✔</p>
     </button>
 </div>
         
         <!-- Modal crear -->
-        <div class="py-24 bg-gray-700/50 z-10 absolute top-0 right-0 bottom-0 left-0" id="modal" v-show="modal.modalCrear">
+        <div class="py-24 bg-gray-700/50 z-10 fixed top-0 right-0 bottom-0 left-0" id="modal" v-show="modal.modalCrear">
         <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
             <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
                 <div class="w-full flex justify-start text-gray-600 mb-3">
@@ -21,7 +21,7 @@
                     <svg class="h-16 w-16 text-blue-500"  width="24"  height="24"  viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M12 20h9" />  <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" /></svg>
 
                 </div>
-                <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Agregar un pedido</h1>
+                <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Agregar un producto</h1>
                 <h2 v-show="this.modal.modalLista">
                     {{this.producto.descripcion}}
                 </h2>
@@ -133,7 +133,7 @@
     </div>
     <!-- modasl edit -->
 
-    <div class="py-12 bg-gray-700/50 z-10 absolute top-0 right-0 bottom-0 left-0" id="modal" v-show="modal.modalEditar">
+    <div class="py-12 bg-gray-700/50 z-10 fixed top-0 right-0 bottom-0 left-0" id="modal" v-show="modal.modalEditar">
                 <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
                     <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
                         <div class="w-full flex justify-start text-gray-600 mb-3">
@@ -150,13 +150,13 @@
                             </div>
                         </div> -->
                         <form action @submit.prevent="editarPedidoProducto">
-                            <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Modifica los productos del pedido</h1>
+                            <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Modifica tu pedido</h1>
                             <input type="text" v-model="this.producto.nombre_producto" readonly="readonly" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border">
                             <label for="cantidad" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Cantidad</label>
                             <input v-model="this.objeto.cantidad" type="number" min="1" max="100" id="cantidad" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Cantidad requerida" />
     
                             <div class="flex items-center justify-center w-full">
-                                <button class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">Submit</button>
+                                <button class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">Guardar</button>
                                 <button class="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm" @click="limpiarDatos('editar')" type="button">Cancel</button>
                             </div>
                             <button class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 rounded focus:ring-2 focus:outline-none focus:ring-gray-600" @click="limpiarDatos('editar')" type="button" aria-label="close modal" role="button">

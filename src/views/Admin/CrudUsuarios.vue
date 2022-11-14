@@ -3,7 +3,7 @@
                 <p class="text-sm font-medium leading-none text-white">Agregar usuario</p>
             </button>
             <!-- Modal crear -->
-        <div class="py-12 bg-gray-700/50 z-10 absolute top-0 right-0 bottom-0 left-0" id="modal" v-show="modal.modalCrear">
+        <div class="py-12 bg-gray-700/50 z-10 fixed top-0 right-0 bottom-0 left-0" id="modal" v-show="modal.modalCrear">
             <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
                 <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
                     <div class="w-full flex justify-start text-gray-600 mb-3">
@@ -16,7 +16,7 @@
                         <label for="email" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Email</label>
                         <input type="email" v-model="objeto.email" name="descripcion" id="descripcion" cols="50" rows="6" placeholder="ejemplo@gmail.com" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border">
                         <label for="telefono" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Telefono</label>
-                        <input v-model="objeto.telefono" id="telefono" type="text" minlength="10" maxlength="10" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="00000000" />
+                        <input v-model="objeto.telefono" id="telefono" pattern="^[0-9]{10}$" type="text" minlength="10" maxlength="10" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="00000000" />
                         <label for="rol" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Rol</label>
                         <select id="rol" name="rol" v-model="objeto.rol" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                             <option value="repartidor">Repartidor</option>
@@ -91,7 +91,7 @@
                                     <div class="text-left font-medium text-gray-800">{{usuario.rol}}</div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
-                                    <div class="text-left font-medium text-gray-800">{{usuario.estatus}}</div>
+                                    <div class="text-left font-medium text-gray-800">{{(usuario.estatus == true)?"Activo":"Inactivo"}}</div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
                                         <div class="flex flex-row justify-center">
@@ -146,7 +146,7 @@
     </div>
 <!-- modasl edit -->
 
-<div class="py-12 bg-gray-700/50 z-10 absolute top-0 right-0 bottom-0 left-0" id="modal" v-show="modal.modalEditar">
+<div class="py-12 bg-gray-700/50 z-10 fixed top-0 right-0 bottom-0 left-0" id="modal" v-show="modal.modalEditar">
         <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
             <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
                 <div class="w-full flex justify-start text-gray-600 mb-3">
@@ -161,7 +161,7 @@
                     <label for="email_edit" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Email</label>
                     <input type="email" v-model="objeto.email" name="email_edit" id="email_edit" placeholder="ejemplo@gmail.com" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border">
                     <label for="telefono_edit" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Telefono</label>
-                    <input v-model="objeto.telefono" id="telefono_edit" type="text" minlength="10" maxlength="10" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="00000000" />
+                    <input v-model="objeto.telefono" id="telefono_edit" type="text" pattern="^[0-9]{10}$" minlength="10" maxlength="10" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="00000000" />
                     <label for="rol_edit" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Rol</label>
                     <select id="rol_edit" name="rol_edit" v-model="objeto.rol" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                         <option value="repartidor">Repartidor</option>
@@ -193,7 +193,7 @@
 
 <!-- modal borrar -->
 
-<div class="py-12 bg-gray-700/50 min-w-screen h-screen animated fadeIn faster  fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover"  v-show="modal.modalBorrar">
+<div class="py-12 bg-gray-700/50 min-w-screen h-screen animated fadeIn faster fixed left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover"  v-show="modal.modalBorrar">
     <!-- <div class="absolute bg-black opacity-80 inset-0 z-0"></div> -->
     <div class="w-full  max-w-lg p-5 relative mx-auto my-auto rounded-xl shadow-lg  bg-white ">
     <!--content-->

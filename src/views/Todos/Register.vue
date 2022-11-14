@@ -30,7 +30,7 @@
 									</label>
 									<input
 										class="w-full px-3 py-2 text-sm leading-tight text-black border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-										id="razon_social" required
+										id="razon_social"
 										type="text" v-model="razon_social"
 										placeholder="Omitir si es persona fisica"
 									/>
@@ -63,7 +63,7 @@
 							<div class="mb-4 md:flex md:justify-between">
 								<div class="mb-4 md:mr-2 md:mb-0">
 									<label class="block mb-2 text-sm font-bold text-gray-700" for="password">
-										Password
+										Contraseña
 									</label>
 									<input
 										class="w-full px-3 py-2 mb-3 text-sm leading-tight text-black border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
@@ -75,7 +75,7 @@
 								</div>
 								<div class="md:ml-2">
 									<label class="block mb-2 text-sm font-bold text-gray-700" for="password_confirmation">
-										Confirm Password
+										Confirma tu contraseña
 									</label>
 									<input
 										class="w-full px-3 py-2 mb-3 text-sm leading-tight text-black border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
@@ -94,8 +94,9 @@
 										class="w-full px-3 py-2 text-sm leading-tight text-black border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
 										id="telefono" required v-model="telefono"
 										type="text"
-										placeholder="Solo nuevo leon"
+										placeholder="10 digitos"
 										maxlength="10"
+										pattern="^[0-9]{10}$"
 									/>
 								</div>
 								<div class="md:ml-2">
@@ -106,7 +107,7 @@
 										class="w-full px-3 py-2 text-sm leading-tight text-black border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
 										id="direccion" required v-model="direccion"
 										type="text"
-										placeholder="Seleccione su direccion"
+										placeholder="Colonia, Ciudad, Estado"
 									/>
 								</div>
 							</div>
@@ -156,6 +157,7 @@
             register() {
 				if (this.password === this.password_confirmation) {
 					try {
+						this.razon_social = (this.razon_social == "")?"Persona Fisica":this.razon_social;
 						auth.register_client(this.nombre, this.email, this.RFC, this.password, this.password_confirmation, this.direccion, this.telefono, this.razon_social ).then(response => {
 							if(response.data.status == 200){
 								this.$router.push("/")

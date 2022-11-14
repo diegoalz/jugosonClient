@@ -3,7 +3,7 @@
             <p class="text-sm font-medium leading-none text-white">Agregar pedidos</p>
         </button>
         <!-- Modal crear -->
-        <div class="py-12 bg-gray-700/50 z-10 absolute top-0 right-0 bottom-0 left-0" id="modal" v-show="modal.modalCrear">
+        <div class="py-12 bg-gray-700/50 z-10 fixed top-0 right-0 bottom-0 left-0" id="modal" v-show="modal.modalCrear">
         <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
             <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
                 <div class="w-full flex justify-start text-gray-600 mb-3">
@@ -12,12 +12,12 @@
 
 
                 </div>
-                <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Agregar un pedido</h1>
+                <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Crear un pedido</h1>
                 <form action @submit.prevent="crearPedido">
                     <label for="nombre_producto" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Orden compra</label>
-                    <input v-model="objeto.orden_compra" id="nombre_producto" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Orden de compra" />
+                    <input v-model="objeto.orden_compra" id="nombre_producto" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Clave" required/>
                     <label for="descripcion" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Direccion</label>
-                    <textarea v-model="objeto.direccion" name="descripcion" id="descripcion" cols="50" rows="6" placeholder="Colonia residencia, guadalupe, nuevo león" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full flex items-center pl-3 text-sm border-gray-300 rounded border"></textarea>
+                    <textarea v-model="objeto.direccion" name="descripcion" id="descripcion" cols="50" rows="6" placeholder="Número, Calle, Colonia, Municipio, Estado" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full flex items-center pl-3 text-sm border-gray-300 rounded border" required></textarea>
                     <div class="flex items-center justify-center w-full">
                         <button class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">Guardar</button>
                         <button class="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm" @click="limpiarDatos('crear')" type="button">Cancelar</button>
@@ -37,7 +37,7 @@
         <!-- component -->
         <div class="flex flex-col justify-center h-full">
         <!-- Table -->
-        <div class="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
+        <div class="w-full max-w-4xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
             <header class="px-5 py-4 border-b border-gray-100">
                 <h2 class="font-semibold text-gray-800">Pedidos</h2>
             </header>
@@ -57,6 +57,9 @@
                                 </th>
                                 <th class="p-2 whitespace-nowrap">
                                     <div class="font-semibold text-left">Fecha</div>
+                                </th>
+                                <th class="p-2 whitespace-nowrap">
+                                    <div class="font-semibold text-left">Hora</div>
                                 </th>
                                 <th class="p-2 whitespace-nowrap">
                                     <div class="font-semibold text-center">Acciones</div>
@@ -80,6 +83,9 @@
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
                                     <div class="text-left font-medium text-gray-800">{{pedido.created_at.substr(0, 10)}}</div>
+                                </td>
+                                <td class="p-2 whitespace-nowrap">
+                                    <div class="text-left font-medium text-gray-800">{{pedido.created_at.substr(11, 8)}}</div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
                                         <div class="flex flex-row justify-center">
@@ -116,7 +122,7 @@
 
 <!-- modasl edit -->
 
-    <div class="py-12 bg-gray-700/50 z-10 absolute top-0 right-0 bottom-0 left-0" id="modal" v-show="modal.modalEditar">
+    <div class="py-12 bg-gray-700/50 z-10 fixed top-0 right-0 bottom-0 left-0" id="modal" v-show="modal.modalEditar">
         <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
             <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
                 <div class="w-full flex justify-start text-gray-600 mb-3">
@@ -127,9 +133,9 @@
                 <form action @submit.prevent="editarPedido">
                     <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Modifica el pedido</h1>
                     <label for="orden_compra" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Orden de compra</label>
-                    <input v-model="objeto.orden_compra" id="orden_compra" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Valor" />
+                    <input v-model="objeto.orden_compra" id="orden_compra" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Clave" required/>
                     <label for="name" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Direccion</label>
-                    <input v-model="objeto.direccion" id="name" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Jugo de naranja" />
+                    <input v-model="objeto.direccion" id="name" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="Número, Calle, Colonia, Minucipio, Estado" required/>
     
                     <div class="flex items-center justify-center w-full">
                         <button class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">Submit</button>

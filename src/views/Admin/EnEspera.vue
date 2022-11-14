@@ -23,6 +23,12 @@
                                 <th class="p-2 whitespace-nowrap">
                                     <div class="font-semibold text-left">Estatus</div>
                                 </th>
+                                <th class="p-2 whitespace-nowrap">
+                                    <div class="font-semibold text-left">Fecha</div>
+                                </th>
+                                <th class="p-2 whitespace-nowrap">
+                                    <div class="font-semibold text-left">Hora</div>
+                                </th>
                             </tr>
                         </thead>
                         <tbody class="text-sm divide-y divide-gray-100">
@@ -37,7 +43,13 @@
                                     <div class="text-left font-medium text-gray-800">{{pedido.proceso}}</div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
-                                    <div class="text-left font-medium text-gray-800">{{pedido.estatus}}</div>
+                                    <div class="text-left font-medium text-gray-800">{{(pedido.estatus == true)?"Activo":"Inactivo"}}</div>
+                                </td>
+                                <td class="p-2 whitespace-nowrap">
+                                    <div class="text-left font-medium text-gray-800">{{pedido.updated_at.substr(0, 10)}}</div>
+                                </td>
+                                <td class="p-2 whitespace-nowrap">
+                                    <div class="text-left font-medium text-gray-800">{{pedido.updated_at.substr(11, 8)}}</div>
                                 </td>
                             </tr>
                             <p v-else="result">Cargando...</p>
