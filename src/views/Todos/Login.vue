@@ -6,7 +6,7 @@
             Jugonson
             </h1>
             <p class="mb-2 text-white hidden md:block font-mono">
-            El nectar mas fresco de la region
+                El sabor más fresco de la región
             </p>
         </div>
         <div class="w-full md:w-1/2 flex flex-col items-center bg-white py-5 md:py-8 px-4">

@@ -32,7 +32,7 @@
 										class="w-full px-3 py-2 text-sm leading-tight text-black border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
 										id="razon_social"
 										type="text" v-model="razon_social"
-										placeholder="Omitir si es persona fisica"
+										placeholder="Solo para empresas"
 									/>
 								</div>
 							</div>
