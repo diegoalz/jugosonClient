@@ -2,7 +2,7 @@
         <!-- component -->
         <div class="flex flex-col justify-center h-full">
         <!-- Table -->
-        <div class="w-full max-w-3xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
+        <div class="w-full max-w-5xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
             <header class="px-5 py-4 border-b border-gray-100">
                 <h2 class="font-semibold text-gray-800">Por hacer</h2>              
             </header>
@@ -24,6 +24,9 @@
                                     <div class="font-semibold text-left">Fecha</div>
                                 </th>
                                 <th class="p-2 whitespace-nowrap">
+                                    <div class="font-semibold text-left">Hora</div>
+                                </th>
+                                <th class="p-2 whitespace-nowrap">
                                     <div class="font-semibold text-left text-center">Acciones</div>
                                 </th>
                             </tr>
@@ -40,7 +43,10 @@
                                     <div class="text-left font-medium text-gray-800">{{pedido.proceso}}</div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
-                                    <div class="text-left font-medium text-gray-800">{{pedido.updated_at}}</div>
+                                    <div class="text-left font-medium text-gray-800">{{pedido.created_at.substr(0, 10)}}</div>
+                                </td>
+                                <td class="p-2 whitespace-nowrap">
+                                    <div class="text-left font-medium text-gray-800">{{pedido.created_at.substr(11, 8)}}</div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
                                     <div class="justify-text my-8 select-none flex">

@@ -2,7 +2,7 @@
     <!-- component -->
     <div class="flex flex-col justify-center h-full">
         <!-- Table -->
-        <div class="w-full max-w-4xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
+        <div class="w-full max-w-5xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
             <header class="px-5 py-4 border-b border-gray-100">
                 <h2 class="font-semibold text-gray-800">Mis pedidos</h2>
             </header>
@@ -13,6 +13,9 @@
                             <tr>
                                 <th class="p-2 whitespace-nowrap">
                                     <div class="font-semibold text-left">Orden compra</div>
+                                </th>
+                                <th class="p-2 whitespace-nowrap">
+                                    <div class="font-semibold text-left">Fecha</div>
                                 </th>
                                 <th class="p-2 whitespace-nowrap">
                                     <div class="font-semibold text-left">Proceso</div>
@@ -35,6 +38,9 @@
                             <tr v-if="result" v-for="pedido in result">
                                 <td class="p-2 whitespace-nowrap">
                                     <div class="text-left"><router-link :to="{name:'detalleRepartidor', params:{id_pedido : pedido.id}}">{{pedido.orden_compra}}</router-link></div>
+                                </td>
+                                <td class="p-2 whitespace-nowrap">
+                                    <div class="text-left">{{pedido.created_at}}</div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
                                     <div class="text-left">{{pedido.proceso}}</div>

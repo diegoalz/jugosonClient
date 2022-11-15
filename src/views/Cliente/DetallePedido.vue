@@ -253,11 +253,13 @@ import genericoControl from '../../logic/repartidor';
                         this.result = response.data.result;
                         if(this.proceso == "en espera"){
                             this.modal.cancelar = true;
-                        }else{
+                        }else if(this.proceso == "Iniciado"){
                             this.modal.aceptar = true;
                         }
                     }else{
                         this.result = true;
+                        this.modal.aceptar = false;
+                        this.modal.cancelar = false;
                     }
                 }).catch(error => {
                     console.log(error);

@@ -1,6 +1,6 @@
 <template>
         <button @click="modal.modalCrear = true" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 px-3 my-4 py-2 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded margin ">
-            <p class="text-sm font-medium leading-none text-white">Agregar pedidos</p>
+            <p class="text-sm font-medium leading-none text-white">Agregar pedido</p>
         </button>
         <!-- Modal crear -->
         <div class="py-12 bg-gray-700/50 z-10 fixed top-0 right-0 bottom-0 left-0" id="modal" v-show="modal.modalCrear">
